@@ -7,7 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="41,52,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="155*"/>
+            <ColumnDefinition Width="18*"/>
+        </Grid.ColumnDefinitions>
+        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="321" VerticalAlignment="Top" Width="519" Margin="0,0,-0.333,-0.333" Background="#FF1DD3BD" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>
+    
+    

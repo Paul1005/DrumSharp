@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace DrumSharp
 {
@@ -21,11 +22,36 @@ namespace DrumSharp
     /// </summary>
     public partial class MainWindow : Window
     {
+        Point pos = new Point(100, 0);
         public MainWindow()
         {
             InitializeComponent();
+            Console.WriteLine("test");
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Tick += new EventHandler(gameTick);
+
+            timer.Interval = new TimeSpan(10000);
+            timer.Start();
         }
-        
+
+        private void gameTick(object sender, EventArgs e)
+        {
+            pos.Y += 1;
+            createNote(pos);
+        }
+
+        private void createNote(Point position)
+        {
+            Ellipse newEllipse = new Ellipse();
+            newEllipse.Fill = Brushes.Black;
+            newEllipse.Width = 10;
+            newEllipse.Height = 10;
+
+            Canvas.SetTop(newEllipse, position.Y);
+            Canvas.SetLeft(newEllipse, position.X);
+            
+            canvas.Children.Add(newEllipse);
+        }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
