@@ -1,1 +1,15 @@
 C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\bin\Debug\DrumSharp.exe.config
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\DrumSharp.csprojResolveAssemblyReference.cache
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\MainWindow.g.cs
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\App.g.cs
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\DrumSharp_MarkupCompile.cache
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\DrumSharp_MarkupCompile.lref
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\bin\Debug\DrumSharp.exe
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\bin\Debug\DrumSharp.pdb
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\MainWindow.baml
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\DrumSharp.g.resources
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\DrumSharp.Properties.Resources.resources
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\DrumSharp.csproj.GenerateResource.Cache
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\DrumSharp.exe
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\DrumSharp.pdb
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\DrumSharp_Content.g.cs

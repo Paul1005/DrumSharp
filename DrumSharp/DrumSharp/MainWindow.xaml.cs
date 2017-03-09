@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrumSharp.Drums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,13 @@ namespace DrumSharp
         public MainWindow()
         {
             InitializeComponent();
+        }
+        
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            Drum d = new Snare(new Uri(@"../../Images/poop.png", UriKind.Relative), new Uri(@"../../sounds/highhat_open.mp3", UriKind.Relative));
+            d.playSound();
         }
     }
 }
