@@ -22,11 +22,35 @@ namespace DrumSharp
     /// </summary>
     public partial class MainWindow : Window
     {
-        Point pos = new Point(100, 0);
+        private Point pos = new Point(100, 0);
+        private Dictionary<Key, Drum> map;
         public MainWindow()
         {
             InitializeComponent();
-            Console.WriteLine("test");
+
+            map = new Dictionary<Key, Drum>();
+            Snare snare = new Snare(
+                new Uri(@"../../Images/poop.png", UriKind.Relative),
+                new Uri(@"../../sounds/snare.mp3", UriKind.Relative));
+
+            Bass bass = new Bass(
+                new Uri(@"../../Images/poop.png", UriKind.Relative),
+                new Uri(@"../../sounds/kick.wav", UriKind.Relative));
+
+            HighHat highHat = new HighHat(
+                new Uri(@"../../Images/poop.png", UriKind.Relative),
+                new Uri(@"../../sounds/highhat_open.mp3", UriKind.Relative));
+
+            map.Add(Key.A, highHat);
+            map.Add(Key.S, highHat);
+
+            map.Add(Key.G, snare);
+            map.Add(Key.H, snare);
+
+            map.Add(Key.C, bass);
+            map.Add(Key.Space, bass);
+
+            //Console.WriteLine("test");
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += new EventHandler(gameTick);
 
@@ -49,14 +73,16 @@ namespace DrumSharp
 
             Canvas.SetTop(newEllipse, position.Y);
             Canvas.SetLeft(newEllipse, position.X);
-            
+
             canvas.Children.Add(newEllipse);
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            Drum d = new Snare(new Uri(@"../../Images/poop.png", UriKind.Relative), new Uri(@"../../sounds/highhat_open.mp3", UriKind.Relative));
-            d.playSound();
+            if (map.ContainsKey(e.Key))
+            {
+                map[e.Key].playSound();
+            }
         }
     }
 }
