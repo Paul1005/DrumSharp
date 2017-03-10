@@ -74,7 +74,12 @@ namespace DrumSharp
             Canvas.SetTop(newEllipse, position.Y);
             Canvas.SetLeft(newEllipse, position.X);
 
+            int count = canvas.Children.Count;
             canvas.Children.Add(newEllipse);
+            if (count > 0)
+            {
+                canvas.Children.RemoveAt(count - 1);
+            }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
