@@ -64,6 +64,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Drums\Drum.cs" />
+    <Compile Include="Drums\Bass.cs" />
+    <Compile Include="Drums\HighHat.cs" />
     <Compile Include="Drums\Snare.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
