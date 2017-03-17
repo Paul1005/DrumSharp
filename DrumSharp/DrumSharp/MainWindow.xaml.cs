@@ -1,5 +1,4 @@
 ﻿using DrumSharp.Drums;
-using DrumSharp.Notes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +15,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-
 namespace DrumSharp
 {
     /// <summary>
@@ -24,16 +22,10 @@ namespace DrumSharp
     /// </summary>
     public partial class MainWindow : Window
     {
-<<<<<<< Updated upstream
         private Point pos1 = new Point(25, 0);
         /*private Point pos2 = new Point(235, 0);
         private Point pos3 = new Point(445, 0);*/
-=======
-
->>>>>>> Stashed changes
         private Dictionary<Key, Drum> map;
-        private Note note;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -66,8 +58,8 @@ namespace DrumSharp
 
             timer.Interval = new TimeSpan(10000);
             timer.Start();
+        }
 
-<<<<<<< Updated upstream
         private void gameTick(object sender, EventArgs e)
         {
             pos1.Y += 1;
@@ -76,16 +68,10 @@ namespace DrumSharp
             createNote(pos2);
             pos3.Y += 1;
             createNote(pos3);*/
-=======
-            note = new Note(new Point(100, 0), new Ellipse());
-
-            canvas.Children.Add(note.Ellipse);
->>>>>>> Stashed changes
         }
 
-        private void gameTick(object sender, EventArgs e)
+        private void createNote(Point position)
         {
-<<<<<<< Updated upstream
             Ellipse newEllipse = new Ellipse();
             newEllipse.Fill = Brushes.Black;
             newEllipse.Width = 55;
@@ -97,29 +83,16 @@ namespace DrumSharp
             int count = canvas.Children.Count;
             canvas.Children.Add(newEllipse);
             if (count > 6)
-=======
-            if (note != null && note.moveDown())
             {
-                note = null;
+                canvas.Children.RemoveAt(count - 1);
             }
-            if (note != null)
->>>>>>> Stashed changes
-            {
-                Canvas.SetTop(note.Ellipse, note.Position.Y);
-                Canvas.SetLeft(note.Ellipse, note.Position.X);
-            }
-            canvas.UpdateLayout();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (map.ContainsKey(e.Key) && !e.IsRepeat)
+            if (map.ContainsKey(e.Key))
             {
-                if (note != null && note.Position.Y >= 200 
-                    && note.Position.Y <= 300)
-                {
-                    map[e.Key].playSound();
-                }
+                map[e.Key].playSound();
             }
         }
     }
