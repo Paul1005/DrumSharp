@@ -22,13 +22,16 @@ namespace DrumSharp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Point pos = new Point(100, 0);
+        private Point pos1 = new Point(25, 0);
+        /*private Point pos2 = new Point(235, 0);
+        private Point pos3 = new Point(445, 0);*/
         private Dictionary<Key, Drum> map;
         public MainWindow()
         {
             InitializeComponent();
 
             map = new Dictionary<Key, Drum>();
+
             Snare snare = new Snare(
                 new Uri(@"../../Images/poop.png", UriKind.Relative),
                 new Uri(@"../../sounds/snare.mp3", UriKind.Relative));
@@ -50,7 +53,6 @@ namespace DrumSharp
             map.Add(Key.C, bass);
             map.Add(Key.Space, bass);
 
-            //Console.WriteLine("test");
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += new EventHandler(gameTick);
 
@@ -60,23 +62,27 @@ namespace DrumSharp
 
         private void gameTick(object sender, EventArgs e)
         {
-            pos.Y += 1;
-            createNote(pos);
+            pos1.Y += 1;
+            createNote(pos1);
+           /* pos2.Y += 1;
+            createNote(pos2);
+            pos3.Y += 1;
+            createNote(pos3);*/
         }
 
         private void createNote(Point position)
         {
             Ellipse newEllipse = new Ellipse();
             newEllipse.Fill = Brushes.Black;
-            newEllipse.Width = 10;
-            newEllipse.Height = 10;
+            newEllipse.Width = 55;
+            newEllipse.Height = 40;
 
             Canvas.SetTop(newEllipse, position.Y);
             Canvas.SetLeft(newEllipse, position.X);
 
             int count = canvas.Children.Count;
             canvas.Children.Add(newEllipse);
-            if (count > 0)
+            if (count > 6)
             {
                 canvas.Children.RemoveAt(count - 1);
             }
