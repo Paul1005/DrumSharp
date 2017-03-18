@@ -85,7 +85,24 @@ namespace DrumSharp
                     n.Added = true;
                     break;
                 }
-
+            }
+            foreach (Note n in beat.SnareNotes)
+            {
+                if (!n.Added && watch.ElapsedMilliseconds - startTime > n.Time)
+                {
+                    canvas.Children.Add(n.Ellipse);
+                    n.Added = true;
+                    break;
+                }
+            }
+            foreach (Note n in beat.CymbolNotes)
+            {
+                if (!n.Added && watch.ElapsedMilliseconds - startTime > n.Time)
+                {
+                    canvas.Children.Add(n.Ellipse);
+                    n.Added = true;
+                    break;
+                }
             }
         }
 
@@ -105,6 +122,43 @@ namespace DrumSharp
                         canvas.Children.Remove(beat.BassNotes[i].Ellipse);
                         beat.BassNotes.Remove(beat.BassNotes[i]);
                         i--;
+                        break;
+                    }
+                }
+            }
+            for (int i = 0; i < beat.SnareNotes.Count; i++)
+            {
+                if (beat.SnareNotes[i].Added)
+                {
+                    if (beat.SnareNotes[i].moveDown())
+                    {
+                        Canvas.SetTop(beat.SnareNotes[i].Ellipse, beat.SnareNotes[i].Position.Y);
+                        Canvas.SetLeft(beat.SnareNotes[i].Ellipse, beat.SnareNotes[i].Position.X);
+                    }
+                    else
+                    {
+                        canvas.Children.Remove(beat.SnareNotes[i].Ellipse);
+                        beat.SnareNotes.Remove(beat.SnareNotes[i]);
+                        i--;
+                        break;
+                    }
+                }
+            }
+            for (int i = 0; i < beat.CymbolNotes.Count; i++)
+            {
+                if (beat.CymbolNotes[i].Added)
+                {
+                    if (beat.CymbolNotes[i].moveDown())
+                    {
+                        Canvas.SetTop(beat.CymbolNotes[i].Ellipse, beat.CymbolNotes[i].Position.Y);
+                        Canvas.SetLeft(beat.CymbolNotes[i].Ellipse, beat.CymbolNotes[i].Position.X);
+                    }
+                    else
+                    {
+                        canvas.Children.Remove(beat.CymbolNotes[i].Ellipse);
+                        beat.CymbolNotes.Remove(beat.CymbolNotes[i]);
+                        i--;
+                        break;
                     }
                 }
             }
@@ -113,7 +167,7 @@ namespace DrumSharp
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (map.ContainsKey(e.Key))
+            if (!e.IsRepeat && map.ContainsKey(e.Key))
             {
                 map[e.Key].playSound();
                 if (e.Key == Key.C || e.Key == Key.Space)
@@ -124,12 +178,23 @@ namespace DrumSharp
                         beat.BassNotes.Remove(beat.BassNotes[0]);
                     }
                 }
-                else if (e.Key == Key.A || e.Key == Key.S)
-                {
-                }
                 else if (e.Key == Key.G || e.Key == Key.H)
                 {
+                    if (beat.SnareNotes.Count > 0 && beat.SnareNotes[0].Position.Y > 200)
+                    {
+                        canvas.Children.Remove(beat.SnareNotes[0].Ellipse);
+                        beat.SnareNotes.Remove(beat.SnareNotes[0]);
+                    }
                 }
+                else if (e.Key == Key.A || e.Key == Key.S)
+                {
+                    if (beat.CymbolNotes.Count > 0 && beat.CymbolNotes[0].Position.Y > 200)
+                    {
+                        canvas.Children.Remove(beat.CymbolNotes[0].Ellipse);
+                        beat.CymbolNotes.Remove(beat.CymbolNotes[0]);
+                    }
+                }
+
             }
         }
     }
