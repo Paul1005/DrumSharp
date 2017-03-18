@@ -12,12 +12,13 @@
             <ColumnDefinition Width="18*"/>
         </Grid.ColumnDefinitions>
         <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="321" VerticalAlignment="Top" Width="519" Margin="0,0,-0.333,-0.333" Background="#FF1DD3BD" Grid.ColumnSpan="2">
-            <Ellipse x:Name="Bass" Fill="#FFF4F4F5" Height="40" Canvas.Left="25" Stroke="Black" Canvas.Top="255" Width="55"/>
+            <Ellipse x:Name="Bass"   Fill="#FFF4F4F5" Height="40" Canvas.Left="25"  Stroke="Black" Canvas.Top="255" Width="55"/>
+            <Ellipse x:Name="Snare"  Fill="#FFF4F4F5" Height="40" Canvas.Left="235" Stroke="Black" Canvas.Top="255" Width="55"/>
             <Ellipse x:Name="Cymbol" Fill="#FFF4F4F5" Height="40" Canvas.Left="445" Stroke="Black" Canvas.Top="255" Width="55"/>
-            <Ellipse x:Name="Snare" Fill="#FFF4F4F5" Height="40" Canvas.Left="235" Stroke="Black" Canvas.Top="255" Width="55"/>
-            <Label x:Name="label" Content="Bass" Canvas.Left="25" Canvas.Top="255" Height="40" Width="55"/>
-            <Label x:Name="label_Copy" Content="Cymbol" Canvas.Left="445" Canvas.Top="255" Height="40" Width="55"/>
-            <Label x:Name="label_Copy1" Content="Snare" Canvas.Left="235" Canvas.Top="255" Height="40" Width="55"/>
+           
+            <Label x:Name="bass_label" Content="Bass" Canvas.Left="25" Canvas.Top="255" Height="40" Width="55"/>
+            <Label x:Name="snare_label" Content="Snare" Canvas.Left="235" Canvas.Top="255" Height="40" Width="55"/>
+            <Label x:Name="cymbol_label" Content="Cymbol" Canvas.Left="445" Canvas.Top="255" Height="40" Width="55"/>
         </Canvas>
 
     </Grid>

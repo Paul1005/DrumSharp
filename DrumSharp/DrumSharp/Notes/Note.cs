@@ -9,21 +9,23 @@ namespace DrumSharp.Notes
     {
         private Point position;
         private Ellipse ellipse;
+        private long time;
+        private bool added;
 
-        public Note(Point position, Ellipse ellipse)
+        public Note(Point position, Ellipse ellipse, long timing)
         {
-            Console.WriteLine(position.X + " " + position.Y);
+            time = timing;
             this.position = position;
             this.ellipse = ellipse;
             this.ellipse.Fill = Brushes.Black;
-            this.ellipse.Width = 10;
-            this.ellipse.Height = 10;
+            this.ellipse.Width = 55;
+            this.ellipse.Height = 40;
         }
 
         public bool moveDown()
         {
             this.position.Y++;
-            return position.Y > 350;
+            return position.Y < 350;
         }
 
         public Point Position
@@ -34,6 +36,14 @@ namespace DrumSharp.Notes
         {
             get { return ellipse; }
         }
-
+        public long Time
+        {
+            get { return time; }
+        }
+        public bool Added
+        {
+            get { return added; }
+            set { added = value; }
+        }
     }
 }
