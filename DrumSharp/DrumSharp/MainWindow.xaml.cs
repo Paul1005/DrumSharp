@@ -18,14 +18,8 @@ namespace DrumSharp
         //used for measuring elapsed time during the game loop.
         private Stopwatch watch;
 
-        private long startTime;
-
         //This holds the different musical notes seen in game.
         private Beat beat;
-        //private Note testNote;
-        /*private Point pos1 = new Point(25, 0);
-        private Point pos2 = new Point(235, 0);
-        private Point pos3 = new Point(445, 0);*/
 
         //Will hold the varies notes with there respective keys
         private Dictionary<Key, Drum> map;
@@ -65,8 +59,6 @@ namespace DrumSharp
             map.Add(Key.Space, bass);
 
             beat = new Beat();
-            //testNote = new Note(pos1, new Ellipse());
-            //Canvas.SetLeft(testNote.Ellipse, testNote.Position.X);
 
             watch = new Stopwatch();
 
@@ -102,7 +94,7 @@ namespace DrumSharp
         {
             foreach (Note n in beat.BassNotes)
             {
-                if (!n.Added && watch.ElapsedMilliseconds - startTime > n.Time)
+                if (!n.Added && watch.ElapsedMilliseconds > n.Time)
                 {
                     canvas.Children.Add(n.Ellipse);
                     n.Added = true;
@@ -111,7 +103,7 @@ namespace DrumSharp
             }
             foreach (Note n in beat.SnareNotes)
             {
-                if (!n.Added && watch.ElapsedMilliseconds - startTime > n.Time)
+                if (!n.Added && watch.ElapsedMilliseconds > n.Time)
                 {
                     canvas.Children.Add(n.Ellipse);
                     n.Added = true;
@@ -120,7 +112,7 @@ namespace DrumSharp
             }
             foreach (Note n in beat.CymbolNotes)
             {
-                if (!n.Added && watch.ElapsedMilliseconds - startTime > n.Time)
+                if (!n.Added && watch.ElapsedMilliseconds > n.Time)
                 {
                     canvas.Children.Add(n.Ellipse);
                     n.Added = true;
