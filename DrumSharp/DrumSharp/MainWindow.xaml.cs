@@ -15,14 +15,22 @@ namespace DrumSharp
     /// </summary>
     public partial class MainWindow : Window
     {
+        //used for measuring elapsed time during the game loop.
         private Stopwatch watch;
+
         private long startTime;
+
+        //This holds the different musical notes seen in game.
         private Beat beat;
         //private Note testNote;
-        private Point pos1 = new Point(25, 0);
-        /*private Point pos2 = new Point(235, 0);
+        /*private Point pos1 = new Point(25, 0);
+        private Point pos2 = new Point(235, 0);
         private Point pos3 = new Point(445, 0);*/
+
+        //Will hold the varies notes with there respective keys
         private Dictionary<Key, Drum> map;
+
+        //The 3 current instruments we have
         Snare snare;
         Bass bass;
         HighHat highHat;
@@ -32,7 +40,8 @@ namespace DrumSharp
             InitializeComponent();
 
             map = new Dictionary<Key, Drum>();
-
+            
+            //The 3 instruments are instatiated using their image file and sound file.
             snare = new Snare(
                 new Uri(@"../../Images/poop.png", UriKind.Relative),
                 new Uri(@"../../sounds/snare.mp3", UriKind.Relative));
@@ -45,6 +54,7 @@ namespace DrumSharp
                 new Uri(@"../../Images/poop.png", UriKind.Relative),
                 new Uri(@"../../sounds/highhat_open.mp3", UriKind.Relative));
 
+            //Each instrument is then mapped to 2 keys
             map.Add(Key.A, highHat);
             map.Add(Key.S, highHat);
 
@@ -59,7 +69,11 @@ namespace DrumSharp
             //Canvas.SetLeft(testNote.Ellipse, testNote.Position.X);
 
             watch = new Stopwatch();
+
+            //This timer is used to create the gameloop
             DispatcherTimer timer = new DispatcherTimer();
+
+            //This calls the gameTick method on every Tick of the timer
             timer.Tick += new EventHandler(gameTick);
 
             watch.Start();
@@ -67,6 +81,12 @@ namespace DrumSharp
             timer.Start();
         }
 
+        /// <summary>
+        /// This method is called on every Tick of the dispatchTimer, it updates the position of current notes and adds 
+        /// new ones when required.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void gameTick(object sender, EventArgs e)
         {
             //checks if a new note can be added and adds it to the gamescreen
@@ -75,6 +95,9 @@ namespace DrumSharp
             update();
         }
 
+        /// <summary>
+        /// This method goes through the list of the 3 different beats to see if any can be added to the game.
+        /// </summary>
         private void addNewNotes()
         {
             foreach (Note n in beat.BassNotes)
@@ -105,7 +128,9 @@ namespace DrumSharp
                 }
             }
         }
-
+        /// <summary>
+        /// This method goes through the list of the 3 different beats and moves them down the screen if they exist.
+        /// </summary>
         private void update()
         {
             for (int i = 0; i < beat.BassNotes.Count; i++)
@@ -165,6 +190,12 @@ namespace DrumSharp
             canvas.UpdateLayout();
         }
 
+        /// <summary>
+        /// This method is called when user presses a key during gameplay, it checks which key is pressed to see if it
+        /// matches the mapped keys to any of the instruments, and plays them if so.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (!e.IsRepeat && map.ContainsKey(e.Key))
