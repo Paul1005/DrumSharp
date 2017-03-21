@@ -19,7 +19,7 @@ namespace DrumSharp.Drums
             if (imageUri != null && soundUri != null)
             {
                 image = new BitmapImage(imageUri);
-                playerArray = new MediaPlayer[3];
+                playerArray = new MediaPlayer[10];
 
                 for (int i = 0; i < playerArray.Length; i++)
                 {

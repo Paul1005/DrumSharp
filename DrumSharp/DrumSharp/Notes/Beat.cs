@@ -19,7 +19,7 @@ namespace DrumSharp.Notes
             snareNotes = new List<Note>();
             cymbolNotes = new List<Note>();
 
-            long time = 0;
+            long time = 1000;
             for (int i = 0; i < 100; i++)
             {
                 bassNotes.Add(new Note(new System.Windows.Point(25, 0), new Ellipse(), time));
@@ -31,7 +31,7 @@ namespace DrumSharp.Notes
                 snareNotes.Add(new Note(new System.Windows.Point(235, 0), new Ellipse(), time));
                 time += 1000;
             }
-            time = 0;
+            time = 1000;
             for (int i = 0; i < 200; i++)
             {
                 cymbolNotes.Add(new Note(new System.Windows.Point(445, 0), new Ellipse(), time));
