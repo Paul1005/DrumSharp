@@ -175,7 +175,6 @@ namespace DrumSharp
                         canvas.Children.Remove(beat.CymbolNotes[i].Ellipse);
                         beat.CymbolNotes.Remove(beat.CymbolNotes[i]);
                         i--;
-                        break;
                     }
                 }
             }
@@ -195,7 +194,8 @@ namespace DrumSharp
                 map[e.Key].playSound();
                 if (e.Key == Key.C || e.Key == Key.Space)
                 {
-                    if (beat.BassNotes.Count > 0 && beat.BassNotes[0].Position.Y > 200)
+                    if (beat.BassNotes.Count > 0 && beat.BassNotes[0].Position.Y > 235 &&
+                        beat.BassNotes[0].Position.Y < 275)
                     {
                         canvas.Children.Remove(beat.BassNotes[0].Ellipse);
                         beat.BassNotes.Remove(beat.BassNotes[0]);
@@ -203,7 +203,8 @@ namespace DrumSharp
                 }
                 else if (e.Key == Key.G || e.Key == Key.H)
                 {
-                    if (beat.SnareNotes.Count > 0 && beat.SnareNotes[0].Position.Y > 200)
+                    if (beat.SnareNotes.Count > 0 && beat.SnareNotes[0].Position.Y > 235 && 
+                        beat.SnareNotes[0].Position.Y < 275)
                     {
                         canvas.Children.Remove(beat.SnareNotes[0].Ellipse);
                         beat.SnareNotes.Remove(beat.SnareNotes[0]);
@@ -211,8 +212,9 @@ namespace DrumSharp
                 }
                 else if (e.Key == Key.A || e.Key == Key.S)
                 {
-                    if (beat.CymbolNotes.Count > 0 && beat.CymbolNotes[0].Position.Y > 200)
-                    {
+                    if (beat.CymbolNotes.Count > 0 && beat.CymbolNotes[0].Position.Y > 235 && 
+                        beat.CymbolNotes[0].Position.Y < 275)
+                    { 
                         canvas.Children.Remove(beat.CymbolNotes[0].Ellipse);
                         beat.CymbolNotes.Remove(beat.CymbolNotes[0]);
                     }

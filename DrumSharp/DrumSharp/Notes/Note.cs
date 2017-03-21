@@ -25,7 +25,7 @@ namespace DrumSharp.Notes
         public bool moveDown()
         {
             this.position.Y++;
-            return position.Y < 350;
+            return position.Y < 275;
         }
 
         public Point Position
