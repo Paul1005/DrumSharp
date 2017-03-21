@@ -29,6 +29,15 @@ namespace DrumSharp
         Bass bass;
         HighHat highHat;
 
+        // <summary>
+        /// <para/>Purpose: Creates the window and loads the game
+        /// <para/>Input: none
+        /// <para/>Output: none
+        /// <para/>Author: Connor Goudie, Paul McCarlie
+        /// <para/>Date: March 9, 2017
+        /// <para/>Updated by: Connor Goudie, Paul McCarlie
+        /// <para/>Date: March 20, 2017
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
@@ -73,12 +82,20 @@ namespace DrumSharp
             timer.Start();
         }
 
+
+
         /// <summary>
-        /// This method is called on every Tick of the dispatchTimer, it updates the position of current notes and adds 
-        /// new ones when required.
+        /// <para/>Purpose: This method is called on every Tick of the dispatchTimer, it updates the 
+        /// position of current notes and adds new ones when required.
+        /// <para/>Input: 
+        ///     object sender: object calling this method
+        ///     EventArgs e: event arguments recieved from caller
+        /// <para/>Output: none
+        /// <para/>Author: 
+        /// <para/>Date: March 20, 2017
+        /// <para/>Updated by: 
+        /// <para/>Date: March 20, 2017
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void gameTick(object sender, EventArgs e)
         {
             //checks if a new note can be added and adds it to the gamescreen
@@ -86,12 +103,20 @@ namespace DrumSharp
             //updates the game's GUI
             update();
         }
-
-        /// <summary>
-        /// This method goes through the list of the 3 different beats to see if any can be added to the game.
+        
+        /// /// <summary>
+        /// <para/>Iterates through the beat to see if any notes held can be added to 
+        /// the game.
+        /// <para/>Input: none
+        /// <para/>Output: none
+        /// <para/>Author: Connor Goudie
+        /// <para/>Date: March 17, 2017
+        /// <para/>Updated by: 
+        /// <para/>Date: March 20, 2017
         /// </summary>
         private void addNewNotes()
         {
+            //Adds bass notes to the screen
             foreach (Note n in beat.BassNotes)
             {
                 if (!n.Added && watch.ElapsedMilliseconds > n.Time)
@@ -101,6 +126,7 @@ namespace DrumSharp
                     break;
                 }
             }
+            //Adds snare notes to the screen
             foreach (Note n in beat.SnareNotes)
             {
                 if (!n.Added && watch.ElapsedMilliseconds > n.Time)
@@ -110,6 +136,7 @@ namespace DrumSharp
                     break;
                 }
             }
+            // adds cymbol notes to the screen
             foreach (Note n in beat.CymbolNotes)
             {
                 if (!n.Added && watch.ElapsedMilliseconds > n.Time)
@@ -120,11 +147,20 @@ namespace DrumSharp
                 }
             }
         }
-        /// <summary>
-        /// This method goes through the list of the 3 different beats and moves them down the screen if they exist.
+
+        /// /// <summary>
+        /// <para/>Purpose: Iterates through the beat and moves notes held by it down the
+        /// screen if they are currently displayed.
+        /// <para/>Input: none
+        /// <para/>Output: none
+        /// <para/>Author: Connor Goudie
+        /// <para/>Date: March 17, 2017
+        /// <para/>Updated by: Connor Goudie
+        /// <para/>Date: March 20, 2017
         /// </summary>
         private void update()
         {
+            //moves bass notes on the screen down
             for (int i = 0; i < beat.BassNotes.Count; i++)
             {
                 if (beat.BassNotes[i].Added)
@@ -134,6 +170,7 @@ namespace DrumSharp
                         Canvas.SetTop(beat.BassNotes[i].Ellipse, beat.BassNotes[i].Position.Y);
                         Canvas.SetLeft(beat.BassNotes[i].Ellipse, beat.BassNotes[i].Position.X);
                     }
+                    //removes the note from the screen if it is below the threshold
                     else
                     {
                         canvas.Children.Remove(beat.BassNotes[i].Ellipse);
@@ -143,6 +180,7 @@ namespace DrumSharp
                     }
                 }
             }
+            //moves snare notes on the screen down
             for (int i = 0; i < beat.SnareNotes.Count; i++)
             {
                 if (beat.SnareNotes[i].Added)
@@ -152,6 +190,7 @@ namespace DrumSharp
                         Canvas.SetTop(beat.SnareNotes[i].Ellipse, beat.SnareNotes[i].Position.Y);
                         Canvas.SetLeft(beat.SnareNotes[i].Ellipse, beat.SnareNotes[i].Position.X);
                     }
+                    //removes the note from the screen if it is below the threshold
                     else
                     {
                         canvas.Children.Remove(beat.SnareNotes[i].Ellipse);
@@ -161,6 +200,7 @@ namespace DrumSharp
                     }
                 }
             }
+            //moves cymbol notes on the screen down
             for (int i = 0; i < beat.CymbolNotes.Count; i++)
             {
                 if (beat.CymbolNotes[i].Added)
@@ -170,6 +210,7 @@ namespace DrumSharp
                         Canvas.SetTop(beat.CymbolNotes[i].Ellipse, beat.CymbolNotes[i].Position.Y);
                         Canvas.SetLeft(beat.CymbolNotes[i].Ellipse, beat.CymbolNotes[i].Position.X);
                     }
+                    //removes the note from the screen if it is below the threshold
                     else
                     {
                         canvas.Children.Remove(beat.CymbolNotes[i].Ellipse);
@@ -178,12 +219,13 @@ namespace DrumSharp
                     }
                 }
             }
+            //refreshes the screen
             canvas.UpdateLayout();
         }
 
         /// <summary>
-        /// This method is called when user presses a key during gameplay, it checks which key is pressed to see if it
-        /// matches the mapped keys to any of the instruments, and plays them if so.
+        /// When user presses a key during gameplay, this method checks which key is pressed
+        /// to see if it matches the mapped keys to any of the instruments, and plays them if so.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -192,8 +234,10 @@ namespace DrumSharp
             if (!e.IsRepeat && map.ContainsKey(e.Key))
             {
                 map[e.Key].playSound();
+
                 if (e.Key == Key.C || e.Key == Key.Space)
                 {
+                    //if note is within a playable range, remove it from the screen
                     if (beat.BassNotes.Count > 0 && beat.BassNotes[0].Position.Y > 235 &&
                         beat.BassNotes[0].Position.Y < 275)
                     {
@@ -203,6 +247,7 @@ namespace DrumSharp
                 }
                 else if (e.Key == Key.G || e.Key == Key.H)
                 {
+                    //if note is within a playable range, remove it from the screen
                     if (beat.SnareNotes.Count > 0 && beat.SnareNotes[0].Position.Y > 235 && 
                         beat.SnareNotes[0].Position.Y < 275)
                     {
@@ -212,6 +257,7 @@ namespace DrumSharp
                 }
                 else if (e.Key == Key.A || e.Key == Key.S)
                 {
+                    //if note is within a playable range, remove it from the screen
                     if (beat.CymbolNotes.Count > 0 && beat.CymbolNotes[0].Position.Y > 235 && 
                         beat.CymbolNotes[0].Position.Y < 275)
                     { 
