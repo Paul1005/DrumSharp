@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace DrumSharp
@@ -56,7 +57,7 @@ namespace DrumSharp
             highHat = new HighHat(
                 new Uri(@"../../Images/poop.png", UriKind.Relative),
                 new Uri(@"../../sounds/highhat_open.mp3", UriKind.Relative));
-
+            
             //Each instrument is then mapped to 2 keys
             map.Add(Key.A, highHat);
             map.Add(Key.S, highHat);
@@ -148,7 +149,7 @@ namespace DrumSharp
             }
         }
 
-        /// /// <summary>
+        /// <summary>
         /// <para/>Purpose: Iterates through the beat and moves notes held by it down the
         /// screen if they are currently displayed.
         /// <para/>Input: none
@@ -222,13 +223,19 @@ namespace DrumSharp
             //refreshes the screen
             canvas.UpdateLayout();
         }
-
-        /// <summary>
-        /// When user presses a key during gameplay, this method checks which key is pressed
-        /// to see if it matches the mapped keys to any of the instruments, and plays them if so.
-        /// </summary>
+        
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <summary>
+        /// <para/>When user presses a key during gameplay, this method checks which key is pressed
+        /// to see if it matches the mapped keys to any of the instruments, and plays them if so.
+        /// <para/>Input: none
+        /// <para/>Output: none
+        /// <para/>Author: Connor Goudie
+        /// <para/>Date: March 15, 2017
+        /// <para/>Updated by: Connor Goudie
+        /// <para/>Date: March 20, 2017
+        /// </summary>
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (!e.IsRepeat && map.ContainsKey(e.Key))

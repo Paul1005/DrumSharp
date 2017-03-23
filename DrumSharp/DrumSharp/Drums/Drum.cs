@@ -40,13 +40,23 @@ namespace DrumSharp.Drums
                 image = new BitmapImage(imageUri);
 
                 //creates and populates array of MediaPlayers
-                playerArray = new MediaPlayer[3];
+                playerArray = new MediaPlayer[10];
                 for (int i = 0; i < playerArray.Length; i++)
                 {
                     playerArray[i] = new MediaPlayer();
+                    playerArray[i].IsMuted = true;
+                    playerArray[i].MediaOpened += Drum_MediaOpened;
                     playerArray[i].Open(soundUri);
                 }
             }
+        }
+
+        private void Drum_MediaOpened(object sender, EventArgs e)
+        {
+            Console.WriteLine("yes");
+            MediaPlayer tmp = (MediaPlayer)sender;
+            tmp.Pause();
+            tmp.IsMuted = false;
         }
 
         /// <summary>
@@ -61,7 +71,7 @@ namespace DrumSharp.Drums
         public void playSound()
         {
             playerArray[currentPlayerIndex].Play();
-            playerArray[currentPlayerIndex++].Position = System.TimeSpan.FromMilliseconds(0);
+            playerArray[currentPlayerIndex++].Position = TimeSpan.FromMilliseconds(0);
             if (currentPlayerIndex > 2)
             {
                 currentPlayerIndex = 0;
@@ -72,5 +82,10 @@ namespace DrumSharp.Drums
         /// Getter for for image
         /// </summary>
         public BitmapImage Image { get; }
+
+        /// <summary>
+        /// Getter for PlayerArray
+        /// </summary>
+        public MediaPlayer[] PlayerArray { get; }
     }
 }
