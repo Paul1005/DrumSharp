@@ -73,6 +73,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Misc\Player.cs" />
     <Compile Include="Notes\Beat.cs" />
     <Compile Include="Notes\Note.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

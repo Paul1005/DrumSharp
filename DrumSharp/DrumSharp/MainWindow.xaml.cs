@@ -1,4 +1,5 @@
 ﻿using DrumSharp.Drums;
+using DrumSharp.Misc;
 using DrumSharp.Notes;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace DrumSharp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Player player;
         //used for measuring elapsed time during the game loop.
         private Stopwatch watch;
 
@@ -42,6 +44,12 @@ namespace DrumSharp
         public MainWindow()
         {
             InitializeComponent();
+
+            player = new Player()
+            {
+                Score = 0
+            };
+            DataContext = player;
 
             map = new Dictionary<Key, Drum>();
             
@@ -248,6 +256,7 @@ namespace DrumSharp
                     if (beat.BassNotes.Count > 0 && beat.BassNotes[0].Position.Y > 235 &&
                         beat.BassNotes[0].Position.Y < 275)
                     {
+                        player.Score++;
                         canvas.Children.Remove(beat.BassNotes[0].Ellipse);
                         beat.BassNotes.Remove(beat.BassNotes[0]);
                     }
@@ -258,6 +267,7 @@ namespace DrumSharp
                     if (beat.SnareNotes.Count > 0 && beat.SnareNotes[0].Position.Y > 235 && 
                         beat.SnareNotes[0].Position.Y < 275)
                     {
+                        player.Score++;
                         canvas.Children.Remove(beat.SnareNotes[0].Ellipse);
                         beat.SnareNotes.Remove(beat.SnareNotes[0]);
                     }
@@ -267,7 +277,9 @@ namespace DrumSharp
                     //if note is within a playable range, remove it from the screen
                     if (beat.CymbolNotes.Count > 0 && beat.CymbolNotes[0].Position.Y > 235 && 
                         beat.CymbolNotes[0].Position.Y < 275)
-                    { 
+                    {
+                        player.Score++;
+                        Console.WriteLine(player.Score);
                         canvas.Children.Remove(beat.CymbolNotes[0].Ellipse);
                         beat.CymbolNotes.Remove(beat.CymbolNotes[0]);
                     }
