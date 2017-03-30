@@ -17,6 +17,7 @@ namespace DrumSharp
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Player for game
         private Player player;
         //used for measuring elapsed time during the game loop.
         private Stopwatch watch;
@@ -45,6 +46,7 @@ namespace DrumSharp
         {
             InitializeComponent();
 
+            //Initializes player's score to zero
             player = new Player()
             {
                 Score = 0
@@ -185,6 +187,7 @@ namespace DrumSharp
                         canvas.Children.Remove(beat.BassNotes[i].Ellipse);
                         beat.BassNotes.Remove(beat.BassNotes[i]);
                         i--;
+                        player.Score--;
                         break;
                     }
                 }
@@ -205,6 +208,7 @@ namespace DrumSharp
                         canvas.Children.Remove(beat.SnareNotes[i].Ellipse);
                         beat.SnareNotes.Remove(beat.SnareNotes[i]);
                         i--;
+                        player.Score--;
                         break;
                     }
                 }
@@ -225,6 +229,7 @@ namespace DrumSharp
                         canvas.Children.Remove(beat.CymbolNotes[i].Ellipse);
                         beat.CymbolNotes.Remove(beat.CymbolNotes[i]);
                         i--;
+                        player.Score--;
                     }
                 }
             }
@@ -262,6 +267,10 @@ namespace DrumSharp
                         canvas.Children.Remove(beat.BassNotes[0].Ellipse);
                         beat.BassNotes.Remove(beat.BassNotes[0]);
                     }
+                    else
+                    {
+                        player.Score--;
+                    }
                 }
                 else if (e.Key == Key.G || e.Key == Key.H)
                 {
@@ -274,6 +283,10 @@ namespace DrumSharp
                         canvas.Children.Remove(beat.SnareNotes[0].Ellipse);
                         beat.SnareNotes.Remove(beat.SnareNotes[0]);
                     }
+                    else
+                    {
+                        player.Score--;
+                    }
                 }
                 else if (e.Key == Key.A || e.Key == Key.S)
                 {
@@ -285,6 +298,10 @@ namespace DrumSharp
                         player.Score++;
                         canvas.Children.Remove(beat.CymbolNotes[0].Ellipse);
                         beat.CymbolNotes.Remove(beat.CymbolNotes[0]);
+                    }
+                    else
+                    {
+                        player.Score--;
                     }
                 }
 
