@@ -236,7 +236,8 @@ namespace DrumSharp
         /// <param name="e"></param>
         /// <summary>
         /// <para/>When user presses a key during gameplay, this method checks which key is pressed
-        /// to see if it matches the mapped keys to any of the instruments, and plays them if so.
+        /// to see if it matches the mapped keys to any of the instruments, and plays them if so. The
+        /// player's score is updated according to when they hit the corresponding drums.
         /// <para/>Input: none
         /// <para/>Output: none
         /// <para/>Author: Connor Goudie
@@ -256,6 +257,7 @@ namespace DrumSharp
                     if (beat.BassNotes.Count > 0 && beat.BassNotes[0].Position.Y > 235 &&
                         beat.BassNotes[0].Position.Y < 275)
                     {
+                        //Give player a point
                         player.Score++;
                         canvas.Children.Remove(beat.BassNotes[0].Ellipse);
                         beat.BassNotes.Remove(beat.BassNotes[0]);
@@ -267,6 +269,7 @@ namespace DrumSharp
                     if (beat.SnareNotes.Count > 0 && beat.SnareNotes[0].Position.Y > 235 && 
                         beat.SnareNotes[0].Position.Y < 275)
                     {
+                        //Give player a point
                         player.Score++;
                         canvas.Children.Remove(beat.SnareNotes[0].Ellipse);
                         beat.SnareNotes.Remove(beat.SnareNotes[0]);
@@ -278,8 +281,8 @@ namespace DrumSharp
                     if (beat.CymbolNotes.Count > 0 && beat.CymbolNotes[0].Position.Y > 235 && 
                         beat.CymbolNotes[0].Position.Y < 275)
                     {
+                        //Give player a point
                         player.Score++;
-                        Console.WriteLine(player.Score);
                         canvas.Children.Remove(beat.CymbolNotes[0].Ellipse);
                         beat.CymbolNotes.Remove(beat.CymbolNotes[0]);
                     }
