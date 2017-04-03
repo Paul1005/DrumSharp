@@ -10,12 +10,11 @@ namespace DrumSharp.Notes
     /// in the DrumSharp game. Notes that are near the bottom of the screen are 
     /// playable when the player presses the key corresponding to it.
     /// </summary>
+    [Serializable()]
     class Note
     {
         //current position on the screen
         private Point position;
-        //ellipse to represent the note on the screen
-        private Ellipse ellipse;
         //when the note should be added to the screen
         private long time;
         //if the note has been added to the screen
@@ -37,10 +36,6 @@ namespace DrumSharp.Notes
         {
             this.time = time;
             this.position = position;
-            this.ellipse = ellipse;
-            this.ellipse.Fill = Brushes.Black;
-            this.ellipse.Width = 55;
-            this.ellipse.Height = 40;
         }
 
         /// <summary>
@@ -65,14 +60,6 @@ namespace DrumSharp.Notes
         public Point Position
         {
             get { return position; }
-        }
-
-        /// <summary>
-        /// Getter for ellipse
-        /// </summary>
-        public Ellipse Ellipse
-        {
-            get { return ellipse; }
         }
 
         /// <summary>

@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Shapes;
 
 namespace DrumSharp.Notes
@@ -15,7 +12,7 @@ namespace DrumSharp.Notes
     /// There will be a different Beat for any given level, 
     /// and said Beats will be saved/loaded to/from files.
     /// </summary>
-    [Serializable]
+    [Serializable()]
     class Beat
     {
         ///Notes that can be played
@@ -82,7 +79,7 @@ namespace DrumSharp.Notes
         {
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(this.ToString(), FileMode.Create, FileAccess.Write, FileShare.None);
-            //formatter.Serialize(stream, this);
+            formatter.Serialize(stream, this);
             stream.Close();
         }
 
