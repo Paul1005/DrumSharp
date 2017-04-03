@@ -1,4 +1,5 @@
 ﻿using DrumSharp.Drums;
+using DrumSharp.Misc;
 using DrumSharp.Notes;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace DrumSharp
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Player for game
+        private Player player;
         //used for measuring elapsed time during the game loop.
         private Stopwatch watch;
 
@@ -49,6 +52,14 @@ namespace DrumSharp
 
             ellipses = new Dictionary<Note, Ellipse>();
             keyMap = new Dictionary<Key, Drum>();
+            
+            //Initializes player's score to zero
+            player = new Player()
+            {
+                Score = 0
+            };
+            DataContext = player;
+
             
             //The 3 instruments are instatiated using their image file and sound file.
             snare = new Snare(
@@ -205,6 +216,7 @@ namespace DrumSharp
                         ellipses.Remove(notes[i]);
                         notes.Remove(notes[i]);
                         i--;
+                        player.Score--;
                     }
                 }
             }
@@ -214,7 +226,8 @@ namespace DrumSharp
         /// <param name="e"></param>
         /// <summary>
         /// <para/>When user presses a key during gameplay, this method checks which key is pressed
-        /// to see if it matches the mapped keys to any of the instruments, and plays them if so.
+        /// to see if it matches the mapped keys to any of the instruments, and plays them if so. The
+        /// player's score is updated according to when they hit the corresponding drums.
         /// <para/>Input: none
         /// <para/>Output: none
         /// <para/>Author: Connor Goudie
@@ -250,9 +263,16 @@ namespace DrumSharp
             if (notes.Count > 0 && notes[0].Position.Y > 235 &&
                         notes[0].Position.Y < 275)
             {
+                //Give player a point
+                player.Score++;
+
                 canvas.Children.Remove(ellipses[notes[0]]);
                 ellipses.Remove(notes[0]);
                 notes.Remove(notes[0]);
+            }
+            else
+            {
+                player.Score--;
             }
         }
     }
