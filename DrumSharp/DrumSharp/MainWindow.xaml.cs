@@ -215,7 +215,7 @@ namespace DrumSharp
                         canvas.Children.Remove(ellipses[notes[i]]);
                         ellipses.Remove(notes[i]);
                         notes.Remove(notes[i]);
-                        i--;
+                        //i--;
                         player.Score--;
                     }
                 }
@@ -225,15 +225,14 @@ namespace DrumSharp
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <summary>
-        /// <para/>When user presses a key during gameplay, this method checks which key is pressed
-        /// to see if it matches the mapped keys to any of the instruments, and plays them if so. The
-        /// player's score is updated according to when they hit the corresponding drums.
+        /// <para/> When user presses a key during gameplay, this method checks which key is pressed
+        ///         to see if it matches the mapped keys to any of the instruments, and plays them if so.
         /// <para/>Input: none
         /// <para/>Output: none
         /// <para/>Author: Connor Goudie
         /// <para/>Date: March 15, 2017
-        /// <para/>Updated by: Connor Goudie
-        /// <para/>Date: March 20, 2017
+        /// <para/>Updated by: Andrew Busto
+        /// <para/>Date: March 30, 2017
         /// </summary>
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -257,6 +256,15 @@ namespace DrumSharp
             }
         }
 
+        /// <summary>
+        /// <para/> Plays a specified Drum.  Increments/decrements score based on
+        ///         whether the drum was played correctly.  Removes the corrisponding
+        ///         ellipse from the screen if the drum was played correctly.
+        /// <para/>Input: none
+        /// <para/>Output: none
+        /// <para/>Author: Connor Goudie/Andrew Busto
+        /// <para/>Date: March 30, 2017
+        /// </summary>
         private void hitNote(List<Note> notes)
         {
             //if note is within a playable range, remove it from the screen

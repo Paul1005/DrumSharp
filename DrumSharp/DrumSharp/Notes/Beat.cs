@@ -78,9 +78,19 @@ namespace DrumSharp.Notes
         public void save()
         {
             IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(this.ToString(), FileMode.Create, FileAccess.Write, FileShare.None);
-            formatter.Serialize(stream, this);
-            stream.Close();
+            try {
+                Stream stream = new FileStream(this.ToString(), FileMode.Create, FileAccess.Write, FileShare.None);
+                formatter.Serialize(stream, this);
+                stream.Close();
+            }
+            catch (DirectoryNotFoundException)
+            {
+                Console.WriteLine("DirectoryNotFoundException occurred.");
+            }
+            catch (IOException)
+            {
+                Console.WriteLine("IOException occurred.");
+            }
         }
 
         /// <summary>
