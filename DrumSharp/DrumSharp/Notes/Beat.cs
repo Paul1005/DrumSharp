@@ -75,22 +75,32 @@ namespace DrumSharp.Notes
         /// <para/>Author: Andrew Busto
         /// <para/>Date: March 20, 2017
         /// </summary>
-        public void save()
+        public void saveToFile()
         {
             IFormatter formatter = new BinaryFormatter();
-            try {
-                Stream stream = new FileStream(this.ToString(), FileMode.Create, FileAccess.Write, FileShare.None);
-                formatter.Serialize(stream, this);
-                stream.Close();
-            }
-            catch (DirectoryNotFoundException)
-            {
-                Console.WriteLine("DirectoryNotFoundException occurred.");
-            }
-            catch (IOException)
-            {
-                Console.WriteLine("IOException occurred.");
-            }
+
+            Stream stream = new FileStream("hello", FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, this);
+            stream.Close();
+        }
+
+        /// <summary>
+        /// <para/>Purpose: Loads a beat from a file.
+        /// <para/>Input: none
+        /// <para/>Output: The Beat loaded.
+        /// <para/>Author: Andrew Busto
+        /// <para/>Date: April 04, 2017
+        /// </summary>
+        public static Beat loadFromFile(String filename)
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Beat output;
+
+            Stream stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.None);
+            output = (Beat) formatter.Deserialize(stream);
+            stream.Close();
+
+            return output;
         }
 
         /// <summary>

@@ -84,8 +84,8 @@ namespace DrumSharp
             keyMap.Add(Key.C, bass);
             keyMap.Add(Key.Space, bass);
 
-            beat = new Beat();
-            beat.save();
+            beat = Beat.loadFromFile("hello");
+            //beat.saveToFile();
 
             watch = new Stopwatch();
 
@@ -215,7 +215,7 @@ namespace DrumSharp
                         canvas.Children.Remove(ellipses[notes[i]]);
                         ellipses.Remove(notes[i]);
                         notes.Remove(notes[i]);
-                        //i--;
+                        i--;
                         player.Score--;
                     }
                 }
