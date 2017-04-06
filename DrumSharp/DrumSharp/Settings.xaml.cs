@@ -43,21 +43,6 @@ namespace DrumSharp
             menu.Show();
             if (menu.DialogResult == DialogResult.OK)
             {
-                //The 3 instruments are instatiated using their image file and sound file.
-                /*Snare snare = new Snare(
-                    new Uri(@"../../Images/poop.png", UriKind.Relative),
-                    new Uri(@"../../sounds/snare.mp3", UriKind.Relative));
-
-                Bass bass = new Bass(
-                    new Uri(@"../../Images/poop.png", UriKind.Relative),
-                    new Uri(@"../../sounds/kick.wav", UriKind.Relative));
-
-                HighHat highHat = new HighHat(
-                    new Uri(@"../../Images/poop.png", UriKind.Relative),
-                    new Uri(@"../../sounds/highhat_open.mp3", UriKind.Relative));
-                */
-                //MainWindow.KeyMap = new Dictionary<Key, Drum>();
-                //MainWindow.KeyMap.Add(key, snare);
                 menu.Close();
                 menu = null;
                 Console.WriteLine("AYY YO WUDDUP");

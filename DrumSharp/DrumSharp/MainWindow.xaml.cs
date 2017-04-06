@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Windows.Media;
+using System.IO;
 
 namespace DrumSharp
 {
@@ -27,13 +28,13 @@ namespace DrumSharp
         //This holds the different musical notes seen in game.
         private Beat beat;
 
-        //Will hold the various notes with there respective keys
-
         //Holds ellipses corrisponding to specific notes.
         private Dictionary<Note, Ellipse> ellipses;
         DispatcherTimer timer = new DispatcherTimer();
 
         private Ellipse ellipse;
+
+        long curtime, prevtime;
         
         /// <summary>
         /// <para/>Purpose: Creates the window and loads the game
@@ -70,10 +71,15 @@ namespace DrumSharp
             };
             DataContext = player;
 
-            //Each instrument is then mapped to 2 keys     
-
-            beat = Beat.loadFromFile("hello");
-            //beat.saveToFile();
+            try {
+                beat = Beat.loadFromFile("hello");
+            } catch (FileNotFoundException e)
+            {
+                Console.WriteLine("File not found");
+            } catch (IOException e)
+            {
+                Console.WriteLine("Invalid IO");
+            }
 
             watch = new Stopwatch();
 
@@ -85,6 +91,8 @@ namespace DrumSharp
             watch.Start();
             timer.Interval = new TimeSpan(10000);
             timer.Start();
+
+            curtime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
         }
 
 
@@ -164,6 +172,9 @@ namespace DrumSharp
         /// </summary>
         private void update()
         {
+            prevtime = curtime;
+            curtime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+
             //moves bass notes on the screen down
             moveNotes(beat.BassNotes);
 
@@ -191,7 +202,7 @@ namespace DrumSharp
             {
                 if (notes[i].Added)
                 {
-                    if (notes[i].moveDown())
+                    if (notes[i].moveDown(curtime - prevtime))
                     {
                         Canvas.SetTop(ellipses[notes[i]], notes[i].Position.Y);
                         Canvas.SetLeft(ellipses[notes[i]], notes[i].Position.X);
@@ -209,8 +220,6 @@ namespace DrumSharp
             }
         }
         
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         /// <summary>
         /// <para/> When user presses a key during gameplay, this method checks which key is pressed
         ///         to see if it matches the mapped keys to any of the instruments, and plays them if so.
@@ -224,19 +233,20 @@ namespace DrumSharp
         public void Window_KeyDown(object sender, KeyEventArgs e)
         {
             foreach (Pair<Key, Drum> k in Keybinds.keyMap) {
+                Console.WriteLine(k.First);
                 if (!e.IsRepeat && k.First == e.Key)
                 {
                     k.Second.playSound();
 
-                    if (e.Key == Key.C || e.Key == Key.Space)
+                    if (e.Key == Keybinds.keyMap[2].First || e.Key == Keybinds.keyMap[3].First)
                     {
                         hitNote(beat.BassNotes, k.Second);
                     }
-                    else if (e.Key == Key.G || e.Key == Key.H)
+                    else if (e.Key == Keybinds.keyMap[0].First || e.Key == Keybinds.keyMap[1].First)
                     {
                         hitNote(beat.SnareNotes, k.Second);
                     }
-                    else if (e.Key == Key.A || e.Key == Key.S)
+                    else if (e.Key == Keybinds.keyMap[4].First || e.Key == Keybinds.keyMap[5].First)
                     {
                         hitNote(beat.CymbolNotes, k.Second);
                     }
@@ -247,8 +257,9 @@ namespace DrumSharp
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
-            ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            //ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
+
         /// <summary>
         /// <para/> Plays a specified Drum.  Increments/decrements score based on
         ///         whether the drum was played correctly.  Removes the corrisponding
@@ -268,9 +279,9 @@ namespace DrumSharp
                 if(notes[0].Position.Y > 250 && notes[0].Position.Y < 260)
                 {
                     drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+
                     //Give player 2 point
-                    player.Score++;
-                    player.Score++;
+                    player.Score += 2;
                 }
                 else
                 {
@@ -285,6 +296,7 @@ namespace DrumSharp
             else
             {
                 drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+
                 //take point away
                 player.Score--;
             }
@@ -298,11 +310,11 @@ namespace DrumSharp
 
         private void menuButton_Click(object sender, RoutedEventArgs e)
         {
-            timer.Stop();
+            //timer.Stop();
 
             //removes hanging reference (fixes massive memory leak) DO NOT CHANGE
-            timer = null;
-            watch = null;
+            //timer = null;
+            //watch = null;
             UtilizeState(new MainMenu());
         }
 
