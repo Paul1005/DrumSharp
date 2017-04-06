@@ -33,13 +33,12 @@ namespace DrumSharp
         private Dictionary<Note, Ellipse> ellipses;
         DispatcherTimer timer = new DispatcherTimer();
 
-        private Ellipse ellipse;
+        //private Ellipse ellipse;
         //The 3 current instruments we have
         Snare snare;
         Bass bass;
         HighHat highHat;
-
-        private DispatcherTimer timer = new DispatcherTimer();
+        
         
     
         /// <summary>
@@ -224,21 +223,22 @@ namespace DrumSharp
         public void Window_KeyDown(object sender, KeyEventArgs e)
         {
             foreach (Pair<Key, Drum> k in Keybinds.keyMap) {
+                Console.WriteLine(k.First);
                 if (!e.IsRepeat && k.First == e.Key)
                 {
                     k.Second.playSound();
 
-                    if (e.Key == Key.C || e.Key == Key.Space)
+                    if (e.Key == Keybinds.keyMap[2].First || e.Key == Keybinds.keyMap[3].First)
                     {
-                        hitNote(beat.BassNotes);
+                        hitNote(beat.BassNotes, "Bass");
                     }
-                    else if (e.Key == Key.G || e.Key == Key.H)
+                    else if (e.Key == Keybinds.keyMap[0].First || e.Key == Keybinds.keyMap[1].First)
                     {
-                        hitNote(beat.SnareNotes);
+                        hitNote(beat.SnareNotes, "Snare");
                     }
-                    else if (e.Key == Key.A || e.Key == Key.S)
+                    else if (e.Key == Keybinds.keyMap[4].First || e.Key == Keybinds.keyMap[5].First)
                     {
-                        hitNote(beat.CymbolNotes);
+                        hitNote(beat.CymbolNotes, "Cymbol");
                     }
 
                 }
@@ -247,7 +247,7 @@ namespace DrumSharp
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
-            ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            //ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
         /// <summary>
         /// <para/> Plays a specified Drum.  Increments/decrements score based on
@@ -273,21 +273,21 @@ namespace DrumSharp
                 drum = 2;
             }
 
-            ellipse = (Ellipse)canvas.Children[drum];
+            //ellipse = (Ellipse)canvas.Children[drum];
             //if note is within a playable range, remove it from the screen
             if (notes.Count > 0 && notes[0].Position.Y > 235 && notes[0].Position.Y < 275)
             {
 
                 if(notes[0].Position.Y > 250 && notes[0].Position.Y < 260)
                 {
-                    ellipse.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                    //ellipse.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                     //Give player 2 point
                     player.Score++;
                     player.Score++;
                 }
                 else
                 {
-                    ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 0));
+                    //ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 0));
                     //Give player a point
                     player.Score++;
                 }
@@ -297,7 +297,7 @@ namespace DrumSharp
             }
             else
             {
-                ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                //ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
                 //take point away
                 player.Score--;
             }
@@ -312,11 +312,11 @@ namespace DrumSharp
 
         private void menuButton_Click(object sender, RoutedEventArgs e)
         {
-            timer.Stop();
+            //timer.Stop();
 
             //removes hanging reference (fixes massive memory leak) DO NOT CHANGE
-            timer = null;
-            watch = null;
+            //timer = null;
+            //watch = null;
             UtilizeState(new MainMenu());
         }
 

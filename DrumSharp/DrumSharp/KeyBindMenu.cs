@@ -14,20 +14,32 @@ namespace DrumSharp
 {
     public partial class KeyBindMenu : Form
     {
+        TextBox[] boxes;
         public KeyBindMenu()
         {
             InitializeComponent();
+            boxes = new TextBox[6];
+            boxes[0] = snareBox1;
+            boxes[1] = snareBox2;
+            boxes[2] = bassBox1;
+            boxes[3] = bassBox2;
+            boxes[4] = cymbolBox1;
+            boxes[5] = cymbolBox2;
         }
-
-        private void snareBox_TextChanged(object sender, EventArgs e)
+        
+        private void textboxChanged(object sender, EventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            if (textBox.TextLength > 0)
+
+            string propertyName = textBox.Name;
+            for (int i = 0; i < boxes.Length; ++i)
             {
-                char c = textBox.Text[0];
-                Key key = (Key)Enum.Parse(typeof(Key), c.ToString(), ignoreCase: true);
-                Console.WriteLine(key);
-                Keybinds.keyMap[0].First = key; 
+                if (textBox == boxes[i] && textBox.TextLength > 0)
+                {
+                    char c = textBox.Text[0];
+                    Key key = (Key)Enum.Parse(typeof(Key), c.ToString(), ignoreCase: true);
+                    Keybinds.keyMap[i].First = key;
+                }
             }
         }
     }
