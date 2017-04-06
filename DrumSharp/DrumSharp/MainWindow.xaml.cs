@@ -37,6 +37,8 @@ namespace DrumSharp
         Bass bass;
         HighHat highHat;
 
+        long curtime, prevtime;
+
         /// <summary>
         /// <para/>Purpose: Creates the window and loads the game
         /// <para/>Input: none
@@ -98,6 +100,8 @@ namespace DrumSharp
             watch.Start();
             timer.Interval = new TimeSpan(10000);
             timer.Start();
+
+            curtime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
         }
 
 
@@ -177,6 +181,9 @@ namespace DrumSharp
         /// </summary>
         private void update()
         {
+            prevtime = curtime;
+            curtime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+
             //moves bass notes on the screen down
             moveNotes(beat.BassNotes);
 
@@ -204,7 +211,7 @@ namespace DrumSharp
             {
                 if (notes[i].Added)
                 {
-                    if (notes[i].moveDown())
+                    if (notes[i].moveDown(curtime - prevtime))
                     {
                         Canvas.SetTop(ellipses[notes[i]], notes[i].Position.Y);
                         Canvas.SetLeft(ellipses[notes[i]], notes[i].Position.X);
@@ -222,8 +229,6 @@ namespace DrumSharp
             }
         }
         
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         /// <summary>
         /// <para/> When user presses a key during gameplay, this method checks which key is pressed
         ///         to see if it matches the mapped keys to any of the instruments, and plays them if so.
