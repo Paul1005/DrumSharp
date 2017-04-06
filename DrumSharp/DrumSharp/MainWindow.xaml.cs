@@ -19,7 +19,7 @@ namespace DrumSharp
     /// </summary>
     public partial class MainWindow : UserControl, ISwitchable
     {
-        
+
         //Player for game
         private Player player;
         //used for measuring elapsed time during the game loop.
@@ -35,7 +35,7 @@ namespace DrumSharp
         private Ellipse ellipse;
 
         long curtime, prevtime;
-        
+
         /// <summary>
         /// <para/>Purpose: Creates the window and loads the game
         /// <para/>Input: none
@@ -63,7 +63,7 @@ namespace DrumSharp
             Focus();
             //BringToFront();
             ellipses = new Dictionary<Note, Ellipse>();
-            
+
             //Initializes player's score to zero
             player = new Player()
             {
@@ -71,12 +71,15 @@ namespace DrumSharp
             };
             DataContext = player;
 
-            try {
+            try
+            {
                 beat = Beat.loadFromFile("hello");
-            } catch (FileNotFoundException e)
+            }
+            catch (FileNotFoundException e)
             {
                 Console.WriteLine("File not found");
-            } catch (IOException e)
+            }
+            catch (IOException e)
             {
                 Console.WriteLine("Invalid IO");
             }
@@ -118,7 +121,7 @@ namespace DrumSharp
             //updates the game's GUI
             update();
         }
-        
+
         /// /// <summary>
         /// <para/>Iterates through the beat to see if any notes held can be added to 
         /// the game.
@@ -219,7 +222,7 @@ namespace DrumSharp
                 }
             }
         }
-        
+
         /// <summary>
         /// <para/> When user presses a key during gameplay, this method checks which key is pressed
         ///         to see if it matches the mapped keys to any of the instruments, and plays them if so.
@@ -232,15 +235,15 @@ namespace DrumSharp
         /// </summary>
         public void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            foreach (Pair<Key, Drum> k in Keybinds.keyMap) {
-                Console.WriteLine(k.First);
+            foreach (Pair<Key, Drum> k in Keybinds.keyMap)
+            {
                 if (!e.IsRepeat && k.First == e.Key)
                 {
                     k.Second.playSound();
 
                     if (e.Key == Keybinds.keyMap[2].First || e.Key == Keybinds.keyMap[3].First)
                     {
-                        hitNote(beat.BassNotes, k.Second);
+                        hitNote(beat.CymbolNotes, k.Second);
                     }
                     else if (e.Key == Keybinds.keyMap[0].First || e.Key == Keybinds.keyMap[1].First)
                     {
@@ -248,7 +251,7 @@ namespace DrumSharp
                     }
                     else if (e.Key == Keybinds.keyMap[4].First || e.Key == Keybinds.keyMap[5].First)
                     {
-                        hitNote(beat.CymbolNotes, k.Second);
+                        hitNote(beat.BassNotes, k.Second);
                     }
 
                 }
@@ -257,7 +260,18 @@ namespace DrumSharp
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
-            //ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            if (e.Key == Keybinds.keyMap[2].First || e.Key == Keybinds.keyMap[3].First)
+            {
+                Keybinds.highHat.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            }
+            else if (e.Key == Keybinds.keyMap[0].First || e.Key == Keybinds.keyMap[1].First)
+            {
+                Keybinds.snare.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            }
+            else if (e.Key == Keybinds.keyMap[4].First || e.Key == Keybinds.keyMap[5].First)
+            {
+                Keybinds.bass.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            }
         }
 
         /// <summary>
@@ -276,7 +290,7 @@ namespace DrumSharp
             if (notes.Count > 0 && notes[0].Position.Y > 235 && notes[0].Position.Y < 275)
             {
 
-                if(notes[0].Position.Y > 250 && notes[0].Position.Y < 260)
+                if (notes[0].Position.Y > 250 && notes[0].Position.Y < 260)
                 {
                     drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
 
@@ -300,7 +314,6 @@ namespace DrumSharp
                 //take point away
                 player.Score--;
             }
-            ellipse = drum.ellipse;
         }
 
         public void UtilizeState(object state)
@@ -318,7 +331,7 @@ namespace DrumSharp
             UtilizeState(new MainMenu());
         }
 
-        public static Dictionary<Key, Drum> KeyMap{ get; set; }
+        public static Dictionary<Key, Drum> KeyMap { get; set; }
 
     }
 }
