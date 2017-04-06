@@ -34,11 +34,6 @@ namespace DrumSharp
 
         private Ellipse ellipse;
 
-        //The 3 current instruments we have
-        Snare snare;
-        Bass bass;
-        HighHat highHat;
-
         long curtime, prevtime;
         
         /// <summary>
@@ -53,6 +48,17 @@ namespace DrumSharp
         public MainWindow()
         {
             InitializeComponent();
+
+            canvas.Children.Add(Keybinds.bass.ellipse);
+            Canvas.SetTop(Keybinds.bass.ellipse, 255);
+            Canvas.SetLeft(Keybinds.bass.ellipse, 25);
+            canvas.Children.Add(Keybinds.snare.ellipse);
+            Canvas.SetTop(Keybinds.snare.ellipse, 255);
+            Canvas.SetLeft(Keybinds.snare.ellipse, 235);
+            canvas.Children.Add(Keybinds.highHat.ellipse);
+            Canvas.SetTop(Keybinds.highHat.ellipse, 255);
+            Canvas.SetLeft(Keybinds.highHat.ellipse, 445);
+
             Focusable = true;
             Focus();
             //BringToFront();
@@ -234,15 +240,15 @@ namespace DrumSharp
 
                     if (e.Key == Keybinds.keyMap[2].First || e.Key == Keybinds.keyMap[3].First)
                     {
-                        hitNote(beat.BassNotes, "Bass");
+                        hitNote(beat.BassNotes, k.Second);
                     }
                     else if (e.Key == Keybinds.keyMap[0].First || e.Key == Keybinds.keyMap[1].First)
                     {
-                        hitNote(beat.SnareNotes, "Snare");
+                        hitNote(beat.SnareNotes, k.Second);
                     }
                     else if (e.Key == Keybinds.keyMap[4].First || e.Key == Keybinds.keyMap[5].First)
                     {
-                        hitNote(beat.CymbolNotes, "Cymbol");
+                        hitNote(beat.CymbolNotes, k.Second);
                     }
 
                 }
@@ -263,35 +269,23 @@ namespace DrumSharp
         /// <para/>Author: Connor Goudie/Andrew Busto
         /// <para/>Date: March 30, 2017
         /// </summary>
-        private void hitNote(List<Note> notes, String type)
+        private void hitNote(List<Note> notes, Drum drum)
         {
-            int drum = -1;
 
-            if (type.Equals("Bass"))
-            {
-                drum = 0;
-            } else if (type.Equals("Snare"))
-            {
-                drum = 1;
-            } else if (type.Equals("Cymbol"))
-            {
-                drum = 2;
-            }
-
-            //ellipse = (Ellipse)canvas.Children[drum];
             //if note is within a playable range, remove it from the screen
             if (notes.Count > 0 && notes[0].Position.Y > 235 && notes[0].Position.Y < 275)
             {
 
                 if(notes[0].Position.Y > 250 && notes[0].Position.Y < 260)
                 {
-                    //ellipse.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                    drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+
                     //Give player 2 point
                     player.Score += 2;
                 }
                 else
                 {
-                    //ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 0));
+                    drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 0));
                     //Give player a point
                     player.Score++;
                 }
@@ -301,12 +295,12 @@ namespace DrumSharp
             }
             else
             {
-                //ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+
                 //take point away
                 player.Score--;
             }
-            Stopwatch colorWatch = new Stopwatch();
-            colorWatch.Start();
+            ellipse = drum.ellipse;
         }
 
         public void UtilizeState(object state)

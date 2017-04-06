@@ -2,6 +2,7 @@
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Input;
+using System.Windows.Shapes;
 
 namespace DrumSharp.Drums
 {
@@ -21,7 +22,9 @@ namespace DrumSharp.Drums
         //Keys for gameplay
         private Key binding1 = Key.A;
         private Key binding2 = Key.S;
+        public Ellipse ellipse;
 
+   
         /// <summary>
         /// <para/>Purpose: Constructor for Drum
         /// <para/>Input: 
@@ -48,6 +51,10 @@ namespace DrumSharp.Drums
                     playerArray[i].Open(soundUri);
                 }
             }
+            ellipse = new Ellipse();
+            ellipse.Width = 55;
+            ellipse.Height = 40;
+            ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
 
         /// <summary>
