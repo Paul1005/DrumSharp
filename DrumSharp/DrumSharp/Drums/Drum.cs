@@ -53,7 +53,7 @@ namespace DrumSharp.Drums
 
         private void Drum_MediaOpened(object sender, EventArgs e)
         {
-            Console.WriteLine("yes");
+            //Console.WriteLine("yes");
             MediaPlayer tmp = (MediaPlayer)sender;
             tmp.Pause();
             tmp.IsMuted = false;

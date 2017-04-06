@@ -16,8 +16,9 @@ namespace DrumSharp
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : UserControl, ISwitchable
     {
+        
         //Player for game
         private Player player;
         //used for measuring elapsed time during the game loop.
@@ -31,6 +32,7 @@ namespace DrumSharp
 
         //Holds ellipses corrisponding to specific notes.
         private Dictionary<Note, Ellipse> ellipses;
+        DispatcherTimer timer = new DispatcherTimer();
 
         //The 3 current instruments we have
         Snare snare;
@@ -49,7 +51,9 @@ namespace DrumSharp
         public MainWindow()
         {
             InitializeComponent();
-
+            Focusable = true;
+            Focus();
+            //BringToFront();
             ellipses = new Dictionary<Note, Ellipse>();
             keyMap = new Dictionary<Key, Drum>();
             
@@ -90,7 +94,6 @@ namespace DrumSharp
             watch = new Stopwatch();
 
             //This timer is used to create the gameloop
-            DispatcherTimer timer = new DispatcherTimer();
 
             //This calls the gameTick method on every Tick of the timer
             timer.Tick += new EventHandler(gameTick);
@@ -234,7 +237,7 @@ namespace DrumSharp
         /// <para/>Updated by: Andrew Busto
         /// <para/>Date: March 30, 2017
         /// </summary>
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        public void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (!e.IsRepeat && keyMap.ContainsKey(e.Key))
             {
@@ -282,6 +285,24 @@ namespace DrumSharp
             {
                 player.Score--;
             }
+        }
+
+        public void UtilizeState(object state)
+        {
+            Switcher.Switch((UserControl)state);
+        }
+
+        private void menuButton_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Stop();
+
+            //removes hanging reference (fixes massive memory leak) DO NOT CHANGE
+            timer = null;
+            UtilizeState(new MainMenu());
+        }
+        public void CallKeyDown(KeyEventArgs e)
+        {
+            //Do your work
         }
     }
 }
