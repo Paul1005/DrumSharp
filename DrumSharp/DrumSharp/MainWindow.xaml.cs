@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Windows.Media;
+using System.IO;
 
 namespace DrumSharp
 {
@@ -26,8 +27,6 @@ namespace DrumSharp
 
         //This holds the different musical notes seen in game.
         private Beat beat;
-
-        //Will hold the various notes with there respective keys
 
         //Holds ellipses corrisponding to specific notes.
         private Dictionary<Note, Ellipse> ellipses;
@@ -66,8 +65,15 @@ namespace DrumSharp
             };
             DataContext = player;
 
-            beat = Beat.loadFromFile("hello");
-            //beat.saveToFile();
+            try {
+                beat = Beat.loadFromFile("hello");
+            } catch (FileNotFoundException e)
+            {
+                Console.WriteLine("File not found");
+            } catch (IOException e)
+            {
+                Console.WriteLine("Invalid IO");
+            }
 
             watch = new Stopwatch();
 

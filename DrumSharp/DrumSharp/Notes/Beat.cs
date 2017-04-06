@@ -35,7 +35,7 @@ namespace DrumSharp.Notes
             snareNotes = new List<Note>();
             cymbolNotes = new List<Note>();
 
-            //NOTE: this code is primarily for esting purpose
+            /*NOTE: this code is primarily for esting purpose
 
             //base time a note can be played (in milliseconds)
             long time = 0;
@@ -65,7 +65,7 @@ namespace DrumSharp.Notes
             {
                 cymbolNotes.Add(new Note(new System.Windows.Point(445, 0), new Ellipse(), time));
                 time += 500;
-            }
+            }*/
         }
 
         /// <summary>
