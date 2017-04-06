@@ -1,6 +1,5 @@
 ﻿using System.Windows.Shapes;
 using System.Windows;
-using System.Windows.Media;
 using System;
 
 namespace DrumSharp.Notes
@@ -41,16 +40,16 @@ namespace DrumSharp.Notes
         /// <summary>
         /// <para/>Purpose: Moves the Note downwards on the screen, and 
         /// returns if the note is below the threshold to be removed from the screen
-        /// <para/>Input: none
+        /// <para/>Input: time - time since last update in ms.
         /// <para/>Output: none
         /// <para/>Author: Connor Goudie
         /// <para/>Date: March 16, 2017
         /// <para/>Updated by: Connor Goudie
         /// <para/>Date: March 17, 2017
         /// </summary>
-        public bool moveDown()
+        public bool moveDown(long time)
         {
-            this.position.Y++;
+            position.Y += (((double)time)/1000) * 100;
             return position.Y < 275;
         }
 

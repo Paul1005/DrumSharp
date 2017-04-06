@@ -50,3 +50,10 @@ C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumS
 C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\Settings.baml
 C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\WindowSwitcher.baml
 C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\DrumSharp.KeyBindMenu.resources
+C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\obj\Debug\MainMenu.g.cs
+C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\obj\Debug\Settings.g.cs
+C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\obj\Debug\WindowSwitcher.g.cs
+C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\obj\Debug\MainMenu.baml
+C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\obj\Debug\Settings.baml
+C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\obj\Debug\WindowSwitcher.baml
+C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\obj\Debug\DrumSharp.KeyBindMenu.resources
