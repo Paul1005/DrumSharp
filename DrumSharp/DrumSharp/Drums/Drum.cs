@@ -10,7 +10,7 @@ namespace DrumSharp.Drums
     /// All drums have 3 media players, an image, and 2 Keys that play a sound
     /// when the user presses either.
     /// </summary>
-    abstract class Drum
+    public abstract class Drum
     {
         //Array of sound players for concurrent audio playback
         private MediaPlayer[] playerArray;
@@ -53,7 +53,7 @@ namespace DrumSharp.Drums
 
         private void Drum_MediaOpened(object sender, EventArgs e)
         {
-            Console.WriteLine("yes");
+            //Console.WriteLine("yes");
             MediaPlayer tmp = (MediaPlayer)sender;
             tmp.Pause();
             tmp.IsMuted = false;

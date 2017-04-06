@@ -43,3 +43,10 @@ C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\obj\Debug\MainWindow.bam
 C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\obj\Debug\DrumSharp.g.resources
 C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\obj\Debug\DrumSharp.Properties.Resources.resources
 C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\obj\Debug\DrumSharp.csproj.GenerateResource.Cache
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\MainMenu.g.cs
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\Settings.g.cs
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\WindowSwitcher.g.cs
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\MainMenu.baml
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\Settings.baml
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\WindowSwitcher.baml
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\DrumSharp.KeyBindMenu.resources

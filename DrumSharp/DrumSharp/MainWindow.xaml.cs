@@ -16,8 +16,9 @@ namespace DrumSharp
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : UserControl, ISwitchable
     {
+        
         //Player for game
         private Player player;
         //used for measuring elapsed time during the game loop.
@@ -27,16 +28,20 @@ namespace DrumSharp
         private Beat beat;
 
         //Will hold the various notes with there respective keys
-        private Dictionary<Key, Drum> keyMap;
 
         //Holds ellipses corrisponding to specific notes.
         private Dictionary<Note, Ellipse> ellipses;
+        DispatcherTimer timer = new DispatcherTimer();
 
+        private Ellipse ellipse;
         //The 3 current instruments we have
         Snare snare;
         Bass bass;
         HighHat highHat;
 
+        private DispatcherTimer timer = new DispatcherTimer();
+        
+    
         /// <summary>
         /// <para/>Purpose: Creates the window and loads the game
         /// <para/>Input: none
@@ -49,9 +54,10 @@ namespace DrumSharp
         public MainWindow()
         {
             InitializeComponent();
-
+            Focusable = true;
+            Focus();
+            //BringToFront();
             ellipses = new Dictionary<Note, Ellipse>();
-            keyMap = new Dictionary<Key, Drum>();
             
             //Initializes player's score to zero
             player = new Player()
@@ -61,28 +67,10 @@ namespace DrumSharp
             DataContext = player;
 
             
-            //The 3 instruments are instatiated using their image file and sound file.
-            snare = new Snare(
-                new Uri(@"../../Images/poop.png", UriKind.Relative),
-                new Uri(@"../../sounds/snare.mp3", UriKind.Relative));
-
-            bass = new Bass(
-                new Uri(@"../../Images/poop.png", UriKind.Relative),
-                new Uri(@"../../sounds/kick.wav", UriKind.Relative));
-
-            highHat = new HighHat(
-                new Uri(@"../../Images/poop.png", UriKind.Relative),
-                new Uri(@"../../sounds/highhat_open.mp3", UriKind.Relative));
+            
             
             //Each instrument is then mapped to 2 keys
-            keyMap.Add(Key.A, highHat);
-            keyMap.Add(Key.S, highHat);
-
-            keyMap.Add(Key.G, snare);
-            keyMap.Add(Key.H, snare);
-
-            keyMap.Add(Key.C, bass);
-            keyMap.Add(Key.Space, bass);
+            
 
             beat = Beat.loadFromFile("hello");
             //beat.saveToFile();
@@ -90,7 +78,6 @@ namespace DrumSharp
             watch = new Stopwatch();
 
             //This timer is used to create the gameloop
-            DispatcherTimer timer = new DispatcherTimer();
 
             //This calls the gameTick method on every Tick of the timer
             timer.Tick += new EventHandler(gameTick);
@@ -234,28 +221,34 @@ namespace DrumSharp
         /// <para/>Updated by: Andrew Busto
         /// <para/>Date: March 30, 2017
         /// </summary>
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        public void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (!e.IsRepeat && keyMap.ContainsKey(e.Key))
-            {
-                keyMap[e.Key].playSound();
+            foreach (Pair<Key, Drum> k in Keybinds.keyMap) {
+                if (!e.IsRepeat && k.First == e.Key)
+                {
+                    k.Second.playSound();
 
-                if (e.Key == Key.C || e.Key == Key.Space)
-                {
-                    hitNote(beat.BassNotes);
-                }
-                else if (e.Key == Key.G || e.Key == Key.H)
-                {
-                    hitNote(beat.SnareNotes);
-                }
-                else if (e.Key == Key.A || e.Key == Key.S)
-                {
-                    hitNote(beat.CymbolNotes);
-                }
+                    if (e.Key == Key.C || e.Key == Key.Space)
+                    {
+                        hitNote(beat.BassNotes);
+                    }
+                    else if (e.Key == Key.G || e.Key == Key.H)
+                    {
+                        hitNote(beat.SnareNotes);
+                    }
+                    else if (e.Key == Key.A || e.Key == Key.S)
+                    {
+                        hitNote(beat.CymbolNotes);
+                    }
 
+                }
             }
         }
 
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+        }
         /// <summary>
         /// <para/> Plays a specified Drum.  Increments/decrements score based on
         ///         whether the drum was played correctly.  Removes the corrisponding
@@ -265,23 +258,69 @@ namespace DrumSharp
         /// <para/>Author: Connor Goudie/Andrew Busto
         /// <para/>Date: March 30, 2017
         /// </summary>
-        private void hitNote(List<Note> notes)
+        private void hitNote(List<Note> notes, String type)
         {
-            //if note is within a playable range, remove it from the screen
-            if (notes.Count > 0 && notes[0].Position.Y > 235 &&
-                        notes[0].Position.Y < 275)
-            {
-                //Give player a point
-                player.Score++;
+            int drum = -1;
 
+            if (type.Equals("Bass"))
+            {
+                drum = 0;
+            } else if (type.Equals("Snare"))
+            {
+                drum = 1;
+            } else if (type.Equals("Cymbol"))
+            {
+                drum = 2;
+            }
+
+            ellipse = (Ellipse)canvas.Children[drum];
+            //if note is within a playable range, remove it from the screen
+            if (notes.Count > 0 && notes[0].Position.Y > 235 && notes[0].Position.Y < 275)
+            {
+
+                if(notes[0].Position.Y > 250 && notes[0].Position.Y < 260)
+                {
+                    ellipse.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                    //Give player 2 point
+                    player.Score++;
+                    player.Score++;
+                }
+                else
+                {
+                    ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 0));
+                    //Give player a point
+                    player.Score++;
+                }
                 canvas.Children.Remove(ellipses[notes[0]]);
                 ellipses.Remove(notes[0]);
                 notes.Remove(notes[0]);
             }
             else
             {
+                ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                //take point away
                 player.Score--;
             }
+            Stopwatch colorWatch = new Stopwatch();
+            colorWatch.Start();
         }
+
+        public void UtilizeState(object state)
+        {
+            Switcher.Switch((UserControl)state);
+        }
+
+        private void menuButton_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Stop();
+
+            //removes hanging reference (fixes massive memory leak) DO NOT CHANGE
+            timer = null;
+            watch = null;
+            UtilizeState(new MainMenu());
+        }
+
+        public static Dictionary<Key, Drum> KeyMap{ get; set; }
+
     }
 }

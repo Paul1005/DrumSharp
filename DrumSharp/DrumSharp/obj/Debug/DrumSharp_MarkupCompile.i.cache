@@ -4,17 +4,22 @@
 winexe
 C#
 .cs
-C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\obj\Debug\
+<<<<<<< HEAD
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\
+=======
+C:\Users\Paul\Documents\GitHub\DrumSharp\DrumSharp\DrumSharp\obj\Debug\
+>>>>>>> master
 DrumSharp
 none
 false
 DEBUG;TRACE
-C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\App.xaml
-11151548125
+<<<<<<< HEAD
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\App.xaml
+41837379087
 31419780284
-16-262707829
-13738642453
-MainWindow.xaml;
+25-991117680
+15767094614
+MainMenu.xaml;MainWindow.xaml;Settings.xaml;WindowSwitcher.xaml;
 
-True
+False
 

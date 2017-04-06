@@ -6,7 +6,7 @@ namespace DrumSharp.Drums
     /// HighHat is the class that represents a highhat drum in the DrumSharp game.
     /// Although it does not have any additional functionality
     /// </summary>
-    class HighHat : Drum
+    public class HighHat : Drum
     {
         /// <summary>
         /// <para/>Purpose: Constructor for HighHat 
