@@ -31,7 +31,7 @@ namespace DrumSharp
 
         //Holds ellipses corrisponding to specific notes.
         private Dictionary<Note, Ellipse> ellipses;
-
+        private Ellipse ellipse;
         //The 3 current instruments we have
         Snare snare;
         Bass bass;
@@ -256,6 +256,10 @@ namespace DrumSharp
             }
         }
 
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+        }
         /// <summary>
         /// <para/> Plays a specified Drum.  Increments/decrements score based on
         ///         whether the drum was played correctly.  Removes the corrisponding
@@ -280,7 +284,7 @@ namespace DrumSharp
                 drum = 2;
             }
 
-            Ellipse ellipse = (Ellipse)canvas.Children[drum];
+            ellipse = (Ellipse)canvas.Children[drum];
             //if note is within a playable range, remove it from the screen
             if (notes.Count > 0 && notes[0].Position.Y > 235 && notes[0].Position.Y < 275)
             {
@@ -310,8 +314,6 @@ namespace DrumSharp
             }
             Stopwatch colorWatch = new Stopwatch();
             colorWatch.Start();
-            while()
-            ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
     }
 }
