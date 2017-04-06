@@ -51,7 +51,7 @@
             this.snareBox1.Name = "snareBox1";
             this.snareBox1.Size = new System.Drawing.Size(100, 29);
             this.snareBox1.TabIndex = 0;
-            this.snareBox1.TextChanged += new System.EventHandler(this.textboxChanged);
+            this.snareBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxChanged);
             // 
             // bassBox1
             // 
@@ -60,7 +60,7 @@
             this.bassBox1.Name = "bassBox1";
             this.bassBox1.Size = new System.Drawing.Size(100, 29);
             this.bassBox1.TabIndex = 1;
-            this.bassBox1.TextChanged += new System.EventHandler(this.textboxChanged);
+            this.bassBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxChanged);
             // 
             // cymbolBox1
             // 
@@ -69,7 +69,7 @@
             this.cymbolBox1.Name = "cymbolBox1";
             this.cymbolBox1.Size = new System.Drawing.Size(100, 29);
             this.cymbolBox1.TabIndex = 2;
-            this.cymbolBox1.TextChanged += new System.EventHandler(this.textboxChanged);
+            this.cymbolBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxChanged);
             // 
             // snareLabel1
             // 
@@ -134,7 +134,7 @@
             this.snareBox2.Name = "snareBox2";
             this.snareBox2.Size = new System.Drawing.Size(100, 29);
             this.snareBox2.TabIndex = 8;
-            this.snareBox2.TextChanged += new System.EventHandler(this.textboxChanged);
+            this.snareBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxChanged);
             // 
             // bassLabel2
             // 
@@ -152,7 +152,7 @@
             this.bassBox2.Name = "bassBox2";
             this.bassBox2.Size = new System.Drawing.Size(100, 29);
             this.bassBox2.TabIndex = 10;
-            this.bassBox2.TextChanged += new System.EventHandler(this.textboxChanged);
+            this.bassBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxChanged);
             // 
             // highHatLabel2
             // 
@@ -170,7 +170,7 @@
             this.cymbolBox2.Name = "cymbolBox2";
             this.cymbolBox2.Size = new System.Drawing.Size(100, 29);
             this.cymbolBox2.TabIndex = 12;
-            this.cymbolBox2.TextChanged += new System.EventHandler(this.textboxChanged);
+            this.cymbolBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxChanged);
             // 
             // KeyBindMenu
             // 

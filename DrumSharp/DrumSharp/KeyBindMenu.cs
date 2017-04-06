@@ -25,20 +25,37 @@ namespace DrumSharp
             boxes[3] = bassBox2;
             boxes[4] = cymbolBox1;
             boxes[5] = cymbolBox2;
+            string temp;
+            for (int i = 0; i < boxes.Length; ++i)
+            {
+                temp = Keybinds.keyList[i].First.ToString();
+                if (temp.Equals("Space"))
+                {
+                    //boxes[i].Text += " ";
+                }
+                else
+                {
+                    boxes[i].Text += temp;
+                }
+            }
         }
-        
-        private void textboxChanged(object sender, EventArgs e)
+
+        private void textboxChanged(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
 
-            string propertyName = textBox.Name;
+            Key k = KeyInterop.KeyFromVirtualKey((int)e.KeyCode);
             for (int i = 0; i < boxes.Length; ++i)
             {
-                if (textBox == boxes[i] && textBox.TextLength > 0)
+                if (textBox == boxes[i])
                 {
-                    char c = textBox.Text[0];
-                    Key key = (Key)Enum.Parse(typeof(Key), c.ToString(), ignoreCase: true);
-                    Keybinds.keyMap[i].First = key;
+                    if (!Keybinds.keyMap.ContainsKey(k))
+                    {
+                        Console.WriteLine(k);
+                        Keybinds.keyMap.Add(k, Keybinds.keyList[i].Second);
+                        Keybinds.keyMap.Remove(Keybinds.keyList[i].First);
+                    }
+                    Keybinds.keyList[i].First = k;
                 }
             }
         }

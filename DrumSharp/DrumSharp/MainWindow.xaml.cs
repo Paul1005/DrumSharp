@@ -52,16 +52,19 @@ namespace DrumSharp
             canvas.Children.Add(Keybinds.bass.ellipse);
             Canvas.SetTop(Keybinds.bass.ellipse, 255);
             Canvas.SetLeft(Keybinds.bass.ellipse, 25);
+
             canvas.Children.Add(Keybinds.snare.ellipse);
             Canvas.SetTop(Keybinds.snare.ellipse, 255);
             Canvas.SetLeft(Keybinds.snare.ellipse, 235);
+
             canvas.Children.Add(Keybinds.highHat.ellipse);
             Canvas.SetTop(Keybinds.highHat.ellipse, 255);
             Canvas.SetLeft(Keybinds.highHat.ellipse, 445);
 
+            //allows keypresses to be registered
             Focusable = true;
             Focus();
-            //BringToFront();
+
             ellipses = new Dictionary<Note, Ellipse>();
 
             //Initializes player's score to zero
@@ -235,42 +238,31 @@ namespace DrumSharp
         /// </summary>
         public void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            foreach (Pair<Key, Drum> k in Keybinds.keyMap)
+            if (!e.IsRepeat && Keybinds.keyMap.ContainsKey(e.Key))
             {
-                if (!e.IsRepeat && k.First == e.Key)
+                Keybinds.keyMap[e.Key].playSound();
+
+                if (e.Key == Keybinds.keyList[0].First || e.Key == Keybinds.keyList[1].First)
                 {
-                    k.Second.playSound();
-
-                    if (e.Key == Keybinds.keyMap[2].First || e.Key == Keybinds.keyMap[3].First)
-                    {
-                        hitNote(beat.CymbolNotes, k.Second);
-                    }
-                    else if (e.Key == Keybinds.keyMap[0].First || e.Key == Keybinds.keyMap[1].First)
-                    {
-                        hitNote(beat.SnareNotes, k.Second);
-                    }
-                    else if (e.Key == Keybinds.keyMap[4].First || e.Key == Keybinds.keyMap[5].First)
-                    {
-                        hitNote(beat.BassNotes, k.Second);
-                    }
-
+                    hitNote(beat.SnareNotes, Keybinds.keyMap[e.Key]);
+                }
+                else if (e.Key == Keybinds.keyList[2].First || e.Key == Keybinds.keyList[3].First)
+                {
+                    hitNote(beat.CymbolNotes, Keybinds.keyMap[e.Key]);
+                }
+                else if (e.Key == Keybinds.keyList[4].First || e.Key == Keybinds.keyList[5].First)
+                {
+                    hitNote(beat.BassNotes, Keybinds.keyMap[e.Key]);
                 }
             }
+
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Keybinds.keyMap[2].First || e.Key == Keybinds.keyMap[3].First)
+            if (Keybinds.keyMap.ContainsKey(e.Key))
             {
-                Keybinds.highHat.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            }
-            else if (e.Key == Keybinds.keyMap[0].First || e.Key == Keybinds.keyMap[1].First)
-            {
-                Keybinds.snare.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            }
-            else if (e.Key == Keybinds.keyMap[4].First || e.Key == Keybinds.keyMap[5].First)
-            {
-                Keybinds.bass.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+                Keybinds.keyMap[e.Key].ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             }
         }
 
@@ -323,11 +315,10 @@ namespace DrumSharp
 
         private void menuButton_Click(object sender, RoutedEventArgs e)
         {
-            //timer.Stop();
-
-            //removes hanging reference (fixes massive memory leak) DO NOT CHANGE
-            //timer = null;
-            //watch = null;
+            //children removed so game doesn't crash on next startup
+            canvas.Children.Remove(Keybinds.bass.ellipse);
+            canvas.Children.Remove(Keybinds.snare.ellipse);
+            canvas.Children.Remove(Keybinds.highHat.ellipse);
             UtilizeState(new MainMenu());
         }
 

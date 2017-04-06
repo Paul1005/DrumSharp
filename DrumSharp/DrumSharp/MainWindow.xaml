@@ -19,8 +19,8 @@
             <Label x:Name="bass_label"   Content="Bass"   Canvas.Left="25"  Canvas.Top="290" Height="40" Width="55"/>
             <Label x:Name="snare_label"  Content="Snare"  Canvas.Left="235" Canvas.Top="290" Height="40" Width="55"/>
             <Label x:Name="cymbol_label" Content="Cymbol" Canvas.Left="445" Canvas.Top="290" Height="40" Width="55"/>
-            <TextBlock x:Name="textBlock" Canvas.Left="445" TextWrapping="Wrap" Text="Score:"/>
-            <TextBlock x:Name="textBlock1" Canvas.Left="494" TextWrapping="Wrap" Text="{Binding Score}"/>
+            <TextBlock x:Name="textBlock" Canvas.Left="423" TextWrapping="Wrap" Text="Score:"/>
+            <TextBlock x:Name="textBlock1" Canvas.Left="470" TextWrapping="Wrap" Text="{Binding Score}"/>
         </Canvas>
         <Button x:Name="menuButton"
                 Content="Main Menu"

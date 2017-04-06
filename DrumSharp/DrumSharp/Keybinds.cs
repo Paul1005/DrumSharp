@@ -11,7 +11,8 @@ namespace DrumSharp
 {
     public static class Keybinds
     {
-        public static List<Pair<Key, Drum>> keyMap;
+        public static List<Pair<Key, Drum>> keyList;
+        public static Dictionary<Key, Drum> keyMap;
 
         public static Snare snare;
         public static Bass bass;
@@ -19,7 +20,8 @@ namespace DrumSharp
 
         public static void init()
         {
-            keyMap = new List<Pair<Key, Drum>>();
+            keyList = new List<Pair<Key, Drum>>();
+            keyMap = new Dictionary<Key, Drum>();
             //The 3 instruments are instatiated using their image file and sound file.
             snare = new Snare(
                 new Uri(@"../../Images/poop.png", UriKind.Relative),
@@ -34,14 +36,24 @@ namespace DrumSharp
                 new Uri(@"../../sounds/highhat_open.mp3", UriKind.Relative));
 
             //Each instrument is then mapped to 2 keys
-            keyMap.Add(new Pair<Key, Drum>(Key.A, snare));
-            keyMap.Add(new Pair<Key, Drum>(Key.S, snare));
+            //the pairs are put in a list to easily remove/replace when rebinding
+            keyList.Add(new Pair<Key, Drum>(Key.A, snare));
+            keyList.Add(new Pair<Key, Drum>(Key.S, snare));
+            //the pairs are put in a map to easily play the correct sound
+            keyMap.Add(Key.A, snare);
+            keyMap.Add(Key.S, snare);
 
-            keyMap.Add(new Pair<Key, Drum>(Key.G, highHat));
-            keyMap.Add(new Pair<Key, Drum>(Key.H, highHat));
+            keyList.Add(new Pair<Key, Drum>(Key.G, highHat));
+            keyList.Add(new Pair<Key, Drum>(Key.H, highHat));
+            keyMap.Add(Key.G, highHat);
+            keyMap.Add(Key.H, highHat);
 
-            keyMap.Add(new Pair<Key, Drum>(Key.C, bass));
-            keyMap.Add(new Pair<Key, Drum>(Key.Space, bass));
+            keyList.Add(new Pair<Key, Drum>(Key.C, bass));
+            keyList.Add(new Pair<Key, Drum>(Key.Space, bass));
+            keyMap.Add(Key.C, bass);
+            keyMap.Add(Key.Space, bass);
+
+
         }
 
     }
