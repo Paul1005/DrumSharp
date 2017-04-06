@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace DrumSharp.Drums
 {
@@ -19,6 +21,6 @@ namespace DrumSharp.Drums
         /// <para/>Updated by: 
         /// <para/>Date: March 20, 2017
         /// </summary>
-        public Bass(Uri imageUri, Uri soundUri) : base(imageUri, soundUri) { }
+        public Bass(Uri imageUri, Uri soundUri) : base(imageUri, soundUri) {}
     }
 }
