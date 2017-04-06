@@ -11,7 +11,7 @@ namespace DrumSharp.Notes
     /// playable when the player presses the key corresponding to it.
     /// </summary>
     [Serializable()]
-    class Note
+    public class Note
     {
         //current position on the screen
         private Point position;

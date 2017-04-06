@@ -6,7 +6,7 @@ namespace DrumSharp.Drums
     /// Bass is the class that represents a bass drum in the DrumSharp game.
     /// Although it does not have any additional functionality
     /// </summary>
-    class Bass : Drum
+    public class Bass : Drum
     {
         /// <summary>
         /// <para/>Purpose: Constructor for Bass 

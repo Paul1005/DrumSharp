@@ -28,7 +28,6 @@ namespace DrumSharp
         private Beat beat;
 
         //Will hold the various notes with there respective keys
-        private Dictionary<Key, Drum> keyMap;
 
         //Holds ellipses corrisponding to specific notes.
         private Dictionary<Note, Ellipse> ellipses;
@@ -40,6 +39,9 @@ namespace DrumSharp
         Bass bass;
         HighHat highHat;
 
+        private DispatcherTimer timer = new DispatcherTimer();
+        
+    
         /// <summary>
         /// <para/>Purpose: Creates the window and loads the game
         /// <para/>Input: none
@@ -56,7 +58,6 @@ namespace DrumSharp
             Focus();
             //BringToFront();
             ellipses = new Dictionary<Note, Ellipse>();
-            keyMap = new Dictionary<Key, Drum>();
             
             //Initializes player's score to zero
             player = new Player()
@@ -66,28 +67,10 @@ namespace DrumSharp
             DataContext = player;
 
             
-            //The 3 instruments are instatiated using their image file and sound file.
-            snare = new Snare(
-                new Uri(@"../../Images/poop.png", UriKind.Relative),
-                new Uri(@"../../sounds/snare.mp3", UriKind.Relative));
-
-            bass = new Bass(
-                new Uri(@"../../Images/poop.png", UriKind.Relative),
-                new Uri(@"../../sounds/kick.wav", UriKind.Relative));
-
-            highHat = new HighHat(
-                new Uri(@"../../Images/poop.png", UriKind.Relative),
-                new Uri(@"../../sounds/highhat_open.mp3", UriKind.Relative));
+            
             
             //Each instrument is then mapped to 2 keys
-            keyMap.Add(Key.A, highHat);
-            keyMap.Add(Key.S, highHat);
-
-            keyMap.Add(Key.G, snare);
-            keyMap.Add(Key.H, snare);
-
-            keyMap.Add(Key.C, bass);
-            keyMap.Add(Key.Space, bass);
+            
 
             beat = Beat.loadFromFile("hello");
             //beat.saveToFile();
@@ -240,23 +223,25 @@ namespace DrumSharp
         /// </summary>
         public void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (!e.IsRepeat && keyMap.ContainsKey(e.Key))
-            {
-                keyMap[e.Key].playSound();
+            foreach (Pair<Key, Drum> k in Keybinds.keyMap) {
+                if (!e.IsRepeat && k.First == e.Key)
+                {
+                    k.Second.playSound();
 
-                if (e.Key == Key.C || e.Key == Key.Space)
-                {
-                    hitNote(beat.BassNotes, "Bass");
-                }
-                else if (e.Key == Key.G || e.Key == Key.H)
-                {
-                    hitNote(beat.SnareNotes, "Snare");
-                }
-                else if (e.Key == Key.A || e.Key == Key.S)
-                {
-                    hitNote(beat.CymbolNotes, "Cymbol");
-                }
+                    if (e.Key == Key.C || e.Key == Key.Space)
+                    {
+                        hitNote(beat.BassNotes);
+                    }
+                    else if (e.Key == Key.G || e.Key == Key.H)
+                    {
+                        hitNote(beat.SnareNotes);
+                    }
+                    else if (e.Key == Key.A || e.Key == Key.S)
+                    {
+                        hitNote(beat.CymbolNotes);
+                    }
 
+                }
             }
         }
 
@@ -331,11 +316,11 @@ namespace DrumSharp
 
             //removes hanging reference (fixes massive memory leak) DO NOT CHANGE
             timer = null;
+            watch = null;
             UtilizeState(new MainMenu());
         }
-        public void CallKeyDown(KeyEventArgs e)
-        {
-            //Do your work
-        }
+
+        public static Dictionary<Key, Drum> KeyMap{ get; set; }
+
     }
 }

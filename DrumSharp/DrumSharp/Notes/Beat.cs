@@ -13,7 +13,7 @@ namespace DrumSharp.Notes
     /// and said Beats will be saved/loaded to/from files.
     /// </summary>
     [Serializable()]
-    class Beat
+    public class Beat
     {
         ///Notes that can be played
         private List<Note> bassNotes;

@@ -22,6 +22,10 @@ namespace DrumSharp
         public MainMenu()
         {
             InitializeComponent();
+            if (Keybinds.keyMap == null)
+            {
+                Keybinds.init();
+            }
         }
 
         public void UtilizeState(object state)

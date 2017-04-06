@@ -6,7 +6,7 @@ namespace DrumSharp.Drums
     /// Snare is the class that represents a snare drum in the DrumSharp game.
     /// Although it does not have any additional functionality
     /// </summary>
-    class Snare : Drum
+    public class Snare : Drum
     {
         /// <summary>
         /// <para/>Purpose: Constructor for Snare 
