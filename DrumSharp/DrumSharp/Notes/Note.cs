@@ -10,7 +10,7 @@ namespace DrumSharp.Notes
     /// playable when the player presses the key corresponding to it.
     /// </summary>
     [Serializable()]
-    class Note
+    public class Note
     {
         //current position on the screen
         private Point position;
@@ -49,7 +49,7 @@ namespace DrumSharp.Notes
         /// </summary>
         public bool moveDown(long time)
         {
-            position.Y += (((double)time)/1000) * 75;
+            position.Y += (((double)time)/1000) * 100;
             return position.Y < 275;
         }
 
