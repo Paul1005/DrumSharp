@@ -242,15 +242,15 @@ namespace DrumSharp
 
                 if (e.Key == Key.C || e.Key == Key.Space)
                 {
-                    hitNote(beat.BassNotes);
+                    hitNote(beat.BassNotes, "Bass");
                 }
                 else if (e.Key == Key.G || e.Key == Key.H)
                 {
-                    hitNote(beat.SnareNotes);
+                    hitNote(beat.SnareNotes, "Snare");
                 }
                 else if (e.Key == Key.A || e.Key == Key.S)
                 {
-                    hitNote(beat.CymbolNotes);
+                    hitNote(beat.CymbolNotes, "Cymbol");
                 }
 
             }
@@ -265,23 +265,53 @@ namespace DrumSharp
         /// <para/>Author: Connor Goudie/Andrew Busto
         /// <para/>Date: March 30, 2017
         /// </summary>
-        private void hitNote(List<Note> notes)
+        private void hitNote(List<Note> notes, String type)
         {
-            //if note is within a playable range, remove it from the screen
-            if (notes.Count > 0 && notes[0].Position.Y > 235 &&
-                        notes[0].Position.Y < 275)
-            {
-                //Give player a point
-                player.Score++;
+            int drum = -1;
 
+            if (type.Equals("Bass"))
+            {
+                drum = 0;
+            } else if (type.Equals("Snare"))
+            {
+                drum = 1;
+            } else if (type.Equals("Cymbol"))
+            {
+                drum = 2;
+            }
+
+            Ellipse ellipse = (Ellipse)canvas.Children[drum];
+            //if note is within a playable range, remove it from the screen
+            if (notes.Count > 0 && notes[0].Position.Y > 235 && notes[0].Position.Y < 275)
+            {
+
+                if(notes[0].Position.Y > 250 && notes[0].Position.Y < 260)
+                {
+                    ellipse.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                    //Give player 2 point
+                    player.Score++;
+                    player.Score++;
+                }
+                else
+                {
+                    ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 0));
+                    //Give player a point
+                    player.Score++;
+                }
                 canvas.Children.Remove(ellipses[notes[0]]);
                 ellipses.Remove(notes[0]);
                 notes.Remove(notes[0]);
             }
             else
             {
+                ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                //take point away
                 player.Score--;
             }
+            Stopwatch colorWatch = new Stopwatch();
+            colorWatch.Start();
+            while()
+            ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
     }
 }
