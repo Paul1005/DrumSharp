@@ -38,8 +38,7 @@ namespace DrumSharp
         Snare snare;
         Bass bass;
         HighHat highHat;
-
-        private DispatcherTimer timer = new DispatcherTimer();
+        
         
     
         /// <summary>
@@ -230,15 +229,15 @@ namespace DrumSharp
 
                     if (e.Key == Key.C || e.Key == Key.Space)
                     {
-                        hitNote(beat.BassNotes);
+                        hitNote(beat.BassNotes, "Bass");
                     }
                     else if (e.Key == Key.G || e.Key == Key.H)
                     {
-                        hitNote(beat.SnareNotes);
+                        hitNote(beat.SnareNotes, "Snare");
                     }
                     else if (e.Key == Key.A || e.Key == Key.S)
                     {
-                        hitNote(beat.CymbolNotes);
+                        hitNote(beat.CymbolNotes, "Cymbol");
                     }
 
                 }
