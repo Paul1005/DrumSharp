@@ -28,48 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.snareBox1 = new System.Windows.Forms.TextBox();
-            this.bassBox1 = new System.Windows.Forms.TextBox();
-            this.cymbolBox1 = new System.Windows.Forms.TextBox();
             this.snareLabel1 = new System.Windows.Forms.Label();
             this.bassLabel1 = new System.Windows.Forms.Label();
             this.highHatLabel1 = new System.Windows.Forms.Label();
             this.done = new System.Windows.Forms.Button();
-            this.cancel = new System.Windows.Forms.Button();
             this.snareLabel2 = new System.Windows.Forms.Label();
-            this.snareBox2 = new System.Windows.Forms.TextBox();
             this.bassLabel2 = new System.Windows.Forms.Label();
-            this.bassBox2 = new System.Windows.Forms.TextBox();
             this.highHatLabel2 = new System.Windows.Forms.Label();
-            this.cymbolBox2 = new System.Windows.Forms.TextBox();
+            this.snareBox1 = new System.Windows.Forms.TextBox();
+            this.snareBox2 = new System.Windows.Forms.TextBox();
+            this.bassBox1 = new System.Windows.Forms.TextBox();
+            this.bassBox2 = new System.Windows.Forms.TextBox();
+            this.highHatBox1 = new System.Windows.Forms.TextBox();
+            this.highHatBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // snareBox1
-            // 
-            this.snareBox1.Location = new System.Drawing.Point(254, 72);
-            this.snareBox1.MaxLength = 1;
-            this.snareBox1.Name = "snareBox1";
-            this.snareBox1.Size = new System.Drawing.Size(100, 29);
-            this.snareBox1.TabIndex = 0;
-            this.snareBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxChanged);
-            // 
-            // bassBox1
-            // 
-            this.bassBox1.Location = new System.Drawing.Point(254, 172);
-            this.bassBox1.MaxLength = 1;
-            this.bassBox1.Name = "bassBox1";
-            this.bassBox1.Size = new System.Drawing.Size(100, 29);
-            this.bassBox1.TabIndex = 1;
-            this.bassBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxChanged);
-            // 
-            // cymbolBox1
-            // 
-            this.cymbolBox1.Location = new System.Drawing.Point(254, 283);
-            this.cymbolBox1.MaxLength = 1;
-            this.cymbolBox1.Name = "cymbolBox1";
-            this.cymbolBox1.Size = new System.Drawing.Size(100, 29);
-            this.cymbolBox1.TabIndex = 2;
-            this.cymbolBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxChanged);
             // 
             // snareLabel1
             // 
@@ -101,22 +73,13 @@
             // done
             // 
             this.done.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.done.Location = new System.Drawing.Point(83, 403);
+            this.done.Location = new System.Drawing.Point(176, 405);
             this.done.Name = "done";
             this.done.Size = new System.Drawing.Size(84, 40);
             this.done.TabIndex = 6;
+            this.done.TabStop = false;
             this.done.Text = "Done";
             this.done.UseVisualStyleBackColor = true;
-            // 
-            // cancel
-            // 
-            this.cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancel.Location = new System.Drawing.Point(268, 403);
-            this.cancel.Name = "cancel";
-            this.cancel.Size = new System.Drawing.Size(86, 40);
-            this.cancel.TabIndex = 7;
-            this.cancel.Text = "Cancel";
-            this.cancel.UseVisualStyleBackColor = true;
             // 
             // snareLabel2
             // 
@@ -127,15 +90,6 @@
             this.snareLabel2.TabIndex = 9;
             this.snareLabel2.Text = "Snare Key 2:";
             // 
-            // snareBox2
-            // 
-            this.snareBox2.Location = new System.Drawing.Point(254, 107);
-            this.snareBox2.MaxLength = 1;
-            this.snareBox2.Name = "snareBox2";
-            this.snareBox2.Size = new System.Drawing.Size(100, 29);
-            this.snareBox2.TabIndex = 8;
-            this.snareBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxChanged);
-            // 
             // bassLabel2
             // 
             this.bassLabel2.AutoSize = true;
@@ -144,15 +98,6 @@
             this.bassLabel2.Size = new System.Drawing.Size(118, 25);
             this.bassLabel2.TabIndex = 11;
             this.bassLabel2.Text = "Bass Key 2:";
-            // 
-            // bassBox2
-            // 
-            this.bassBox2.Location = new System.Drawing.Point(254, 207);
-            this.bassBox2.MaxLength = 1;
-            this.bassBox2.Name = "bassBox2";
-            this.bassBox2.Size = new System.Drawing.Size(100, 29);
-            this.bassBox2.TabIndex = 10;
-            this.bassBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxChanged);
             // 
             // highHatLabel2
             // 
@@ -163,58 +108,94 @@
             this.highHatLabel2.TabIndex = 13;
             this.highHatLabel2.Text = "High Hat Key 2:";
             // 
-            // cymbolBox2
+            // snareBox1
             // 
-            this.cymbolBox2.Location = new System.Drawing.Point(254, 318);
-            this.cymbolBox2.MaxLength = 1;
-            this.cymbolBox2.Name = "cymbolBox2";
-            this.cymbolBox2.Size = new System.Drawing.Size(100, 29);
-            this.cymbolBox2.TabIndex = 12;
-            this.cymbolBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxChanged);
+            this.snareBox1.Location = new System.Drawing.Point(254, 68);
+            this.snareBox1.MaxLength = 1;
+            this.snareBox1.Name = "snareBox1";
+            this.snareBox1.Size = new System.Drawing.Size(100, 29);
+            this.snareBox1.TabIndex = 14;
+            // 
+            // snareBox2
+            // 
+            this.snareBox2.Location = new System.Drawing.Point(254, 103);
+            this.snareBox2.MaxLength = 1;
+            this.snareBox2.Name = "snareBox2";
+            this.snareBox2.Size = new System.Drawing.Size(100, 29);
+            this.snareBox2.TabIndex = 15;
+            // 
+            // bassBox1
+            // 
+            this.bassBox1.Location = new System.Drawing.Point(254, 168);
+            this.bassBox1.MaxLength = 1;
+            this.bassBox1.Name = "bassBox1";
+            this.bassBox1.Size = new System.Drawing.Size(100, 29);
+            this.bassBox1.TabIndex = 16;
+            // 
+            // bassBox2
+            // 
+            this.bassBox2.Location = new System.Drawing.Point(254, 203);
+            this.bassBox2.MaxLength = 1;
+            this.bassBox2.Name = "bassBox2";
+            this.bassBox2.Size = new System.Drawing.Size(100, 29);
+            this.bassBox2.TabIndex = 17;
+            // 
+            // highHatBox1
+            // 
+            this.highHatBox1.Location = new System.Drawing.Point(254, 283);
+            this.highHatBox1.MaxLength = 1;
+            this.highHatBox1.Name = "highHatBox1";
+            this.highHatBox1.Size = new System.Drawing.Size(100, 29);
+            this.highHatBox1.TabIndex = 18;
+            // 
+            // highHatBox2
+            // 
+            this.highHatBox2.Location = new System.Drawing.Point(254, 318);
+            this.highHatBox2.MaxLength = 1;
+            this.highHatBox2.Name = "highHatBox2";
+            this.highHatBox2.Size = new System.Drawing.Size(100, 29);
+            this.highHatBox2.TabIndex = 19;
             // 
             // KeyBindMenu
             // 
             this.AcceptButton = this.done;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.cancel;
             this.ClientSize = new System.Drawing.Size(455, 502);
-            this.Controls.Add(this.highHatLabel2);
-            this.Controls.Add(this.cymbolBox2);
-            this.Controls.Add(this.bassLabel2);
+            this.Controls.Add(this.highHatBox2);
+            this.Controls.Add(this.highHatBox1);
             this.Controls.Add(this.bassBox2);
-            this.Controls.Add(this.snareLabel2);
+            this.Controls.Add(this.bassBox1);
             this.Controls.Add(this.snareBox2);
-            this.Controls.Add(this.cancel);
+            this.Controls.Add(this.snareBox1);
+            this.Controls.Add(this.highHatLabel2);
+            this.Controls.Add(this.bassLabel2);
+            this.Controls.Add(this.snareLabel2);
             this.Controls.Add(this.done);
             this.Controls.Add(this.highHatLabel1);
             this.Controls.Add(this.bassLabel1);
             this.Controls.Add(this.snareLabel1);
-            this.Controls.Add(this.cymbolBox1);
-            this.Controls.Add(this.bassBox1);
-            this.Controls.Add(this.snareBox1);
             this.Name = "KeyBindMenu";
             this.Text = "KeyBindMenu";
+            this.Enter += new System.EventHandler(this.textBox_Enter);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox snareBox1;
-        private System.Windows.Forms.TextBox bassBox1;
-        private System.Windows.Forms.TextBox cymbolBox1;
         private System.Windows.Forms.Label snareLabel1;
-        private System.Windows.Forms.Label bassLabel1;
-        private System.Windows.Forms.Label highHatLabel1;
-        private System.Windows.Forms.Button done;
-        private System.Windows.Forms.Button cancel;
         private System.Windows.Forms.Label snareLabel2;
-        private System.Windows.Forms.TextBox snareBox2;
+        private System.Windows.Forms.Label bassLabel1;
         private System.Windows.Forms.Label bassLabel2;
-        private System.Windows.Forms.TextBox bassBox2;
+        private System.Windows.Forms.Label highHatLabel1;
         private System.Windows.Forms.Label highHatLabel2;
-        private System.Windows.Forms.TextBox cymbolBox2;
+        private System.Windows.Forms.Button done;
+        private System.Windows.Forms.TextBox snareBox1;
+        private System.Windows.Forms.TextBox snareBox2;
+        private System.Windows.Forms.TextBox bassBox1;
+        private System.Windows.Forms.TextBox bassBox2;
+        private System.Windows.Forms.TextBox highHatBox1;
+        private System.Windows.Forms.TextBox highHatBox2;
     }
 }

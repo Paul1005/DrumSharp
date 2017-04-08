@@ -1,12 +1,4 @@
-﻿using DrumSharp.Drums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 using System.Windows.Input;
 
@@ -23,8 +15,8 @@ namespace DrumSharp
             boxes[1] = snareBox2;
             boxes[2] = bassBox1;
             boxes[3] = bassBox2;
-            boxes[4] = cymbolBox1;
-            boxes[5] = cymbolBox2;
+            boxes[4] = highHatBox1;
+            boxes[5] = highHatBox2;
             string temp;
             for (int i = 0; i < boxes.Length; ++i)
             {
@@ -58,6 +50,13 @@ namespace DrumSharp
                     Keybinds.keyList[i].First = k;
                 }
             }
+        }
+        
+        private void textBox_Enter(object sender, EventArgs e)
+        {
+            TextBox textbox = (TextBox)sender;
+            textbox.SelectionStart = 0;
+            textbox.SelectionLength = textbox.Text.Length;
         }
     }
 }

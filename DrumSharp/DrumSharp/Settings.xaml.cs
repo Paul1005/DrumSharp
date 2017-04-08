@@ -40,8 +40,7 @@ namespace DrumSharp
         private void change_keybinds_Click(object sender, RoutedEventArgs e)
         {
             KeyBindMenu menu = new KeyBindMenu();
-            menu.Show();
-            if (menu.DialogResult == DialogResult.OK)
+            if (menu.ShowDialog() == DialogResult.OK)
             {
                 menu.Close();
                 menu = null;

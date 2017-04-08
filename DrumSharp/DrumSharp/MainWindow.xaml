@@ -5,20 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DrumSharp"
         mc:Ignorable="d"
-        Height="350" Width="525" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp">
+        Height="700" Width="525" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="307*"/>
+            <RowDefinition Height="43*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="321" VerticalAlignment="Top" Width="519" Background="#FF1DD3BD">
+        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="696" VerticalAlignment="Top" Width="519" Background="#FF1DD3BD" Margin="0,0,0,-346.286" Grid.RowSpan="2">
             <!--<Ellipse x:Name="Bass"   Fill="#FFFFFFFF" Height="40" Canvas.Left="25"  Stroke="Black" Canvas.Top="255" Width="55"/>
             <Ellipse x:Name="Snare"  Fill="#FFFFFFFF" Height="40" Canvas.Left="235" Stroke="Black" Canvas.Top="255" Width="55"/>
             <Ellipse x:Name="Cymbol" Fill="#FFFFFFFF" Height="40" Canvas.Left="445" Stroke="Black" Canvas.Top="255" Width="55"/>
 -->
-            <Label x:Name="bass_label"   Content="Bass"   Canvas.Left="25"  Canvas.Top="290" Height="40" Width="55"/>
-            <Label x:Name="snare_label"  Content="Snare"  Canvas.Left="235" Canvas.Top="290" Height="40" Width="55"/>
-            <Label x:Name="cymbol_label" Content="Cymbol" Canvas.Left="445" Canvas.Top="290" Height="40" Width="55"/>
+            <Label x:Name="bass_label"   Content="Bass"   Canvas.Left="25"  Canvas.Top="636" Height="40" Width="55"/>
+            <Label x:Name="snare_label"  Content="Snare"  Canvas.Left="235" Canvas.Top="636" Height="40" Width="55"/>
+            <Label x:Name="cymbol_label" Content="Cymbol" Canvas.Left="445" Canvas.Top="636" Height="40" Width="55"/>
             <TextBlock x:Name="textBlock" Canvas.Left="423" TextWrapping="Wrap" Text="Score:"/>
             <TextBlock x:Name="textBlock1" Canvas.Left="470" TextWrapping="Wrap" Text="{Binding Score}"/>
         </Canvas>

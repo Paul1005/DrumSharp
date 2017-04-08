@@ -5,9 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DrumSharp"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="525">
+             Height="700"
+             Width="525">
     <Grid>
-        <Button x:Name="change_keybinds" Content="Change KeyBinds" Margin="200,90,200.143,0" VerticalAlignment="Top" Click="change_keybinds_Click"/>
-        <Button x:Name="back" Content="Back" Margin="200,228,200.143,0" VerticalAlignment="Top" Click="back_Click"/>
+        <Button x:Name="change_keybinds" Content="Change KeyBinds" Margin="144,180,146.143,0" VerticalAlignment="Top" Click="change_keybinds_Click" Height="90" FontSize="20"/>
+        <Button x:Name="back" Content="Back" Margin="144,407,146.143,0" VerticalAlignment="Top" Click="back_Click" Height="90" Width="234.857142857143" FontSize="20"/>
     </Grid>
 </UserControl>

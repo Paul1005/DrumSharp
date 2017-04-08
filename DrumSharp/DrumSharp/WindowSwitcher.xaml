@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DrumSharp"
         mc:Ignorable="d"
-        Title="DrumSharp" Height="350" Width="525">
-    <StackPanel Name="panel" HorizontalAlignment="Left" Height="326" Margin="-1,-1,-2.571,-3.857" VerticalAlignment="Top" Width="523"/>
+        Title="DrumSharp" Height="700" Width="525">
+    <StackPanel Name="panel" HorizontalAlignment="Left" Height="700" Margin="-1,-1,-2.571,-3.857" VerticalAlignment="Top" Width="523"/>
 
 </Window>

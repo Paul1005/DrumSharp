@@ -49,8 +49,8 @@ namespace DrumSharp.Notes
         /// </summary>
         public bool moveDown(long time)
         {
-            position.Y += (((double)time)/1000) * 100;
-            return position.Y < 275;
+            position.Y += (((double)time)/1000) * 150;
+            return position.Y < 625;
         }
 
         /// <summary>

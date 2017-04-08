@@ -50,15 +50,15 @@ namespace DrumSharp
             InitializeComponent();
 
             canvas.Children.Add(Keybinds.bass.ellipse);
-            Canvas.SetTop(Keybinds.bass.ellipse, 255);
+            Canvas.SetTop(Keybinds.bass.ellipse, 605);
             Canvas.SetLeft(Keybinds.bass.ellipse, 25);
 
             canvas.Children.Add(Keybinds.snare.ellipse);
-            Canvas.SetTop(Keybinds.snare.ellipse, 255);
+            Canvas.SetTop(Keybinds.snare.ellipse, 605);
             Canvas.SetLeft(Keybinds.snare.ellipse, 235);
 
             canvas.Children.Add(Keybinds.highHat.ellipse);
-            Canvas.SetTop(Keybinds.highHat.ellipse, 255);
+            Canvas.SetTop(Keybinds.highHat.ellipse, 605);
             Canvas.SetLeft(Keybinds.highHat.ellipse, 445);
 
             //allows keypresses to be registered
@@ -279,10 +279,10 @@ namespace DrumSharp
         {
 
             //if note is within a playable range, remove it from the screen
-            if (notes.Count > 0 && notes[0].Position.Y > 235 && notes[0].Position.Y < 275)
+            if (notes.Count > 0 && notes[0].Position.Y > 585 && notes[0].Position.Y < 625)
             {
 
-                if (notes[0].Position.Y > 250 && notes[0].Position.Y < 260)
+                if (notes[0].Position.Y > 600 && notes[0].Position.Y < 610)
                 {
                     drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
 
