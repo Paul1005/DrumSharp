@@ -35,7 +35,6 @@
             this.bassLabel1 = new System.Windows.Forms.Label();
             this.highHatLabel1 = new System.Windows.Forms.Label();
             this.done = new System.Windows.Forms.Button();
-            this.cancel = new System.Windows.Forms.Button();
             this.snareLabel2 = new System.Windows.Forms.Label();
             this.snareBox2 = new System.Windows.Forms.TextBox();
             this.bassLabel2 = new System.Windows.Forms.Label();
@@ -101,22 +100,12 @@
             // done
             // 
             this.done.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.done.Location = new System.Drawing.Point(83, 403);
+            this.done.Location = new System.Drawing.Point(185, 402);
             this.done.Name = "done";
             this.done.Size = new System.Drawing.Size(84, 40);
             this.done.TabIndex = 6;
             this.done.Text = "Done";
             this.done.UseVisualStyleBackColor = true;
-            // 
-            // cancel
-            // 
-            this.cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancel.Location = new System.Drawing.Point(268, 403);
-            this.cancel.Name = "cancel";
-            this.cancel.Size = new System.Drawing.Size(86, 40);
-            this.cancel.TabIndex = 7;
-            this.cancel.Text = "Cancel";
-            this.cancel.UseVisualStyleBackColor = true;
             // 
             // snareLabel2
             // 
@@ -177,7 +166,6 @@
             this.AcceptButton = this.done;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.cancel;
             this.ClientSize = new System.Drawing.Size(455, 502);
             this.Controls.Add(this.highHatLabel2);
             this.Controls.Add(this.cymbolBox2);
@@ -185,7 +173,6 @@
             this.Controls.Add(this.bassBox2);
             this.Controls.Add(this.snareLabel2);
             this.Controls.Add(this.snareBox2);
-            this.Controls.Add(this.cancel);
             this.Controls.Add(this.done);
             this.Controls.Add(this.highHatLabel1);
             this.Controls.Add(this.bassLabel1);
@@ -209,7 +196,6 @@
         private System.Windows.Forms.Label bassLabel1;
         private System.Windows.Forms.Label highHatLabel1;
         private System.Windows.Forms.Button done;
-        private System.Windows.Forms.Button cancel;
         private System.Windows.Forms.Label snareLabel2;
         private System.Windows.Forms.TextBox snareBox2;
         private System.Windows.Forms.Label bassLabel2;
