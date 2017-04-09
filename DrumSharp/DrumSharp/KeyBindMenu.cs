@@ -51,7 +51,7 @@ namespace DrumSharp
                 }
             }
         }
-        
+
         private void textBox_Enter(object sender, EventArgs e)
         {
             TextBox textbox = (TextBox)sender;

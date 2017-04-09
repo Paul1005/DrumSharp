@@ -17,7 +17,7 @@ namespace DrumSharp
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : UserControl, ISwitchable
+    public partial class Game : UserControl, ISwitchable
     {
 
         //Player for game
@@ -45,7 +45,7 @@ namespace DrumSharp
         /// <para/>Updated by: Connor Goudie, Paul McCarlie
         /// <para/>Date: March 20, 2017
         /// </summary>
-        public MainWindow()
+        public Game()
         {
             InitializeComponent();
 

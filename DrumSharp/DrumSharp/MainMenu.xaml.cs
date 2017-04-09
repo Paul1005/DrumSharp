@@ -35,7 +35,7 @@ namespace DrumSharp
 
         private void Play_Button_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.Switch(new MainWindow());
+            Switcher.Switch(new Game());
         }
 
         private void settings_Click(object sender, RoutedEventArgs e)
