@@ -22,6 +22,7 @@ namespace DrumSharp.Drums
         //Keys for gameplay
         private Key binding1 = Key.A;
         private Key binding2 = Key.S;
+        //Ellipse object that represents a drum.
         public Ellipse ellipse;
 
    
@@ -51,6 +52,7 @@ namespace DrumSharp.Drums
                     playerArray[i].Open(soundUri);
                 }
             }
+            //creates the ellipse and sets its size and color
             ellipse = new Ellipse();
             ellipse.Width = 55;
             ellipse.Height = 40;

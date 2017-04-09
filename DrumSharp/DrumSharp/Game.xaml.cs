@@ -32,9 +32,9 @@ namespace DrumSharp
         private Dictionary<Note, Ellipse> ellipses;
         DispatcherTimer timer = new DispatcherTimer();
 
-        private Ellipse ellipse;
-
         long curtime, prevtime;
+
+        private Button pauseButton;
 
         /// <summary>
         /// <para/>Purpose: Creates the window and loads the game
@@ -49,8 +49,19 @@ namespace DrumSharp
         {
             InitializeComponent();
 
+            //sets up pause logic; sets pause state to false and programmatically creates the pause button. 
             isPaused = false;
+            pauseButton = new Button();
+            pauseButton.Width = 50;
+            pauseButton.Height = 20;
+            pauseButton.Content = "Pause";
+            pauseButton.Click += new RoutedEventHandler(pauseButton_Click);
+            //adds pause button to the canvas
+            canvas.Children.Add(pauseButton);
+            Canvas.SetTop(pauseButton, 10);
+            Canvas.SetLeft(pauseButton, 85);
 
+            //Adds the 3 drum ellipses to the canvas.
             canvas.Children.Add(Keybinds.bass.ellipse);
             Canvas.SetTop(Keybinds.bass.ellipse, 605);
             Canvas.SetLeft(Keybinds.bass.ellipse, 25);
@@ -260,6 +271,13 @@ namespace DrumSharp
 
         }
 
+        /// <summary>
+        /// <para/> Resets the color of a the drum corresponding to the key being released to back to white.
+        /// <para/>Input: none
+        /// <para/>Output: none
+        /// <para/>Author: Paul McCarlie
+        /// <para/>Date: April 08, 2017
+        /// </summary>
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
             if (Keybinds.keyMap.ContainsKey(e.Key))
@@ -280,12 +298,14 @@ namespace DrumSharp
         private void hitNote(List<Note> notes, Drum drum)
         {
 
-            //if note is within a playable range, remove it from the screen
+            //if note is within a playable range(within 25 units of the passing drum), and if so,
+            //remove it from the screen
             if (notes.Count > 0 && notes[0].Position.Y > 585 && notes[0].Position.Y < 625)
             {
-
+                //checks to see if player hit note withing 5 units of the passing note
                 if (notes[0].Position.Y > 600 && notes[0].Position.Y < 610)
                 {
+                    //color drum green
                     drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
 
                     //Give player 2 point
@@ -293,6 +313,7 @@ namespace DrumSharp
                 }
                 else
                 {
+                    //colors drum yellow
                     drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 0));
                     //Give player a point
                     player.Score++;
@@ -303,6 +324,7 @@ namespace DrumSharp
             }
             else
             {
+                //colors drum red
                 drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
 
                 //take point away
@@ -310,11 +332,25 @@ namespace DrumSharp
             }
         }
 
+        /// <summary>
+        /// <para/> Will switch the screen to whatever is passed in.
+        /// <para/>Input: none
+        /// <para/>Output: none
+        /// <para/>Author: Connor Goudie
+        /// <para/>Date: March 30, 2017
+        /// </summary>
         public void UtilizeState(object state)
         {
             Switcher.Switch((UserControl)state);
         }
 
+        /// <summary>
+        /// <para/> Returns the player to the main menue.
+        /// <para/>Input: none
+        /// <para/>Output: none
+        /// <para/>Author: Connor Goudie
+        /// <para/>Date: April 08, 2017
+        /// </summary>
         private void menuButton_Click(object sender, RoutedEventArgs e)
         {
             //children removed so game doesn't crash on next startup
@@ -324,18 +360,27 @@ namespace DrumSharp
             UtilizeState(new MainMenu());
         }
 
+        /// <summary>
+        /// <para/> Will pause/unpause the game by stopping the timer and watch as well as reset the curtime.
+        /// <para/>Input: none
+        /// <para/>Output: none
+        /// <para/>Author: Paul McCarlie
+        /// <para/>Date: April 08, 2017
+        /// </summary>
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
             if (!isPaused)
             {
                 timer.Stop();
                 watch.Stop();
+                pauseButton.Content = "Unpause";
             } else if (isPaused)
             {
                 prevtime = curtime;
                 curtime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
                 timer.Start();
                 watch.Start();
+                pauseButton.Content = "Pause";
             }
             isPaused = !isPaused;
         }
