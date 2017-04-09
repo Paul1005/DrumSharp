@@ -19,7 +19,7 @@ namespace DrumSharp
     /// </summary>
     public partial class Game : UserControl, ISwitchable
     {
-
+        private bool isPaused;
         //Player for game
         private Player player;
         //used for measuring elapsed time during the game loop.
@@ -48,6 +48,8 @@ namespace DrumSharp
         public Game()
         {
             InitializeComponent();
+
+            isPaused = false;
 
             canvas.Children.Add(Keybinds.bass.ellipse);
             Canvas.SetTop(Keybinds.bass.ellipse, 605);
@@ -320,6 +322,22 @@ namespace DrumSharp
             canvas.Children.Remove(Keybinds.snare.ellipse);
             canvas.Children.Remove(Keybinds.highHat.ellipse);
             UtilizeState(new MainMenu());
+        }
+
+        private void pauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!isPaused)
+            {
+                timer.Stop();
+                watch.Stop();
+            } else if (isPaused)
+            {
+                prevtime = curtime;
+                curtime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+                timer.Start();
+                watch.Start();
+            }
+            isPaused = !isPaused;
         }
 
         public static Dictionary<Key, Drum> KeyMap { get; set; }
