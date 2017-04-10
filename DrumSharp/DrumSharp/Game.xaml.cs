@@ -46,9 +46,11 @@ namespace DrumSharp
         /// <para/>Updated by: Connor Goudie, Paul McCarlie
         /// <para/>Date: March 20, 2017
         /// </summary>
-        public Game()
+        public Game(Beat beat)
         {
             InitializeComponent();
+
+            this.beat = beat;
 
             //sets up pause logic; sets pause state to false and programmatically creates the pause button. 
             isPaused = false;
@@ -88,8 +90,6 @@ namespace DrumSharp
             };
             DataContext = player;
 
-            loadBeat();
-
             watch = new Stopwatch();
 
             //This timer is used to create the gameloop
@@ -102,29 +102,6 @@ namespace DrumSharp
             timer.Start();
 
             curtime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-        }
-
-        private void loadBeat()
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "beat|*.beat";
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-            if ((bool)openFileDialog.ShowDialog())
-            {
-                try
-                {
-                    beat = Beat.loadFromFile(openFileDialog.FileName);
-                }
-                catch (FileNotFoundException e)
-                {
-                    Console.WriteLine("File not found");
-                }
-                catch (IOException e)
-                {
-                    Console.WriteLine("Invalid IO");
-                }
-            }
         }
 
         /// <summary>
@@ -339,7 +316,7 @@ namespace DrumSharp
                 drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
 
                 //take point away
-                player.Score--;
+                player.Score -= 2;
             }
         }
 

@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
+using Microsoft.Win32;
+using DrumSharp.Notes;
 
 namespace DrumSharp
 {
@@ -35,7 +38,27 @@ namespace DrumSharp
 
         private void Play_Button_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.Switch(new Game());
+            Beat beat;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "beat|*.beat";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            if ((bool)openFileDialog.ShowDialog())
+            {
+                try
+                {
+                    beat = Beat.loadFromFile(openFileDialog.FileName);
+                    Switcher.Switch(new Game(beat));
+                }
+                catch (FileNotFoundException)
+                {
+                    Console.WriteLine("File not found");
+                }
+                catch (IOException)
+                {
+                    Console.WriteLine("Invalid IO");
+                }
+            }
         }
 
         private void settings_Click(object sender, RoutedEventArgs e)
