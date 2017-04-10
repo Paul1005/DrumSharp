@@ -25,6 +25,7 @@
             <Label x:Name="cymbol_label" Content="Cymbol" Canvas.Left="445" Canvas.Top="636" Height="40" Width="55"/>
             <TextBlock x:Name="textBlock" Canvas.Left="423" TextWrapping="Wrap" Text="Score:"/>
             <TextBlock x:Name="textBlock1" Canvas.Left="470" TextWrapping="Wrap" Text="{Binding Score}"/>
+            <Button x:Name="pauseButton" Content="Pause" Canvas.Left="85" Canvas.Top="10" Width="50" Focusable="False" Click="pauseButton_Click"/>
         </Canvas>
         <Button x:Name="menuButton"
                 Content="Main Menu"
