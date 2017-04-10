@@ -59,6 +59,8 @@ namespace DrumSharp
             pauseButton.Height = 20;
             pauseButton.Content = "Pause";
             pauseButton.Click += new RoutedEventHandler(pauseButton_Click);
+            //makes it so space bar does not pause/unpause
+            pauseButton.Focusable = false;
             //adds pause button to the canvas
             canvas.Children.Add(pauseButton);
             Canvas.SetTop(pauseButton, 10);
