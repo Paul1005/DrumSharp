@@ -1,6 +1,7 @@
 ﻿using DrumSharp.Drums;
 using DrumSharp.Misc;
 using DrumSharp.Notes;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -39,9 +40,7 @@ namespace DrumSharp
         DispatcherTimer timer = new DispatcherTimer();
 
         long curtime, starttime;
-
-        private Button pauseButton;
-
+        
         /// <summary>
         /// <para/>Purpose: Creates the window and loads the game
         /// <para/>Input: none
@@ -54,19 +53,6 @@ namespace DrumSharp
         public MakeBeat()
         {
             InitializeComponent();
-
-            //sets up pause logic; sets pause state to false and programmatically creates the pause button. 
-            isPaused = false;
-            pauseButton = new Button();
-            pauseButton.Width = 50;
-            pauseButton.Height = 20;
-            pauseButton.Content = "Pause";
-            pauseButton.Click += new RoutedEventHandler(pauseButton_Click);
-            
-            //adds pause button to the canvas
-            canvas.Children.Add(pauseButton);
-            Canvas.SetTop(pauseButton, 10);
-            Canvas.SetLeft(pauseButton, 85);
 
             //Adds the 3 drum ellipses to the canvas.
             canvas.Children.Add(Keybinds.bass.ellipse);
@@ -211,7 +197,7 @@ namespace DrumSharp
         /// </summary>
         public void UtilizeState(object state)
         {
-            Switcher.Switch((UserControl)state);
+            Switcher.Switch((System.Windows.Controls.UserControl)state);
         }
 
         /// <summary>
@@ -223,39 +209,42 @@ namespace DrumSharp
         /// </summary>
         private void menuButton_Click(object sender, RoutedEventArgs e)
         {
+            returnToMenu();
+        }
+
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "beat|*.beat";
+
+            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            // Default File name
+            saveFileDialog.FileName = "new.beat";
+
+            if ((bool)saveFileDialog.ShowDialog())
+            {
+                try {
+                    beat.saveToFile(saveFileDialog.FileName);
+                }
+                catch (IOException err)
+                {
+                    Console.WriteLine("Invalid IO");
+                }
+                finally
+                {
+                    returnToMenu();
+                }
+            }
+        }
+
+        private void returnToMenu()
+        {
             //children removed so game doesn't crash on next startup
             canvas.Children.Remove(Keybinds.bass.ellipse);
             canvas.Children.Remove(Keybinds.snare.ellipse);
             canvas.Children.Remove(Keybinds.highHat.ellipse);
-
-            beat.saveToFile();
-
             UtilizeState(new MainMenu());
-        }
-
-        /// <summary>
-        /// <para/> Will pause/unpause the game by stopping the timer and watch as well as reset the curtime.
-        /// <para/>Input: none
-        /// <para/>Output: none
-        /// <para/>Author: Paul McCarlie
-        /// <para/>Date: April 08, 2017
-        /// </summary>
-        private void pauseButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (!isPaused)
-            {
-                timer.Stop();
-                watch.Stop();
-                pauseButton.Content = "Unpause";
-            }
-            else if (isPaused)
-            {
-                curtime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-                timer.Start();
-                watch.Start();
-                pauseButton.Content = "Pause";
-            }
-            isPaused = !isPaused;
         }
 
         public static Dictionary<Key, Drum> KeyMap { get; set; }

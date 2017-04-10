@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Windows.Media;
 using System.IO;
+using Microsoft.Win32;
 
 namespace DrumSharp
 {
@@ -87,18 +88,7 @@ namespace DrumSharp
             };
             DataContext = player;
 
-            try
-            {
-                beat = Beat.loadFromFile("hello");
-            }
-            catch (FileNotFoundException e)
-            {
-                Console.WriteLine("File not found");
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine("Invalid IO");
-            }
+            loadBeat();
 
             watch = new Stopwatch();
 
@@ -114,7 +104,28 @@ namespace DrumSharp
             curtime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
         }
 
+        private void loadBeat()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "beat|*.beat";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
+            if ((bool)openFileDialog.ShowDialog())
+            {
+                try
+                {
+                    beat = Beat.loadFromFile(openFileDialog.FileName);
+                }
+                catch (FileNotFoundException e)
+                {
+                    Console.WriteLine("File not found");
+                }
+                catch (IOException e)
+                {
+                    Console.WriteLine("Invalid IO");
+                }
+            }
+        }
 
         /// <summary>
         /// <para/>Purpose: This method is called on every Tick of the dispatchTimer, it updates the 

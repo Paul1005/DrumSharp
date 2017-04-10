@@ -34,38 +34,6 @@ namespace DrumSharp.Notes
             bassNotes = new List<Note>();
             snareNotes = new List<Note>();
             cymbolNotes = new List<Note>();
-
-            /*NOTE: this code is primarily for esting purpose
-
-            //base time a note can be played (in milliseconds)
-            long time = 0;
-
-            //populates bassNotes with 100 notes, playable at 1 second intervals
-            for (int i = 0; i < 100; i++)
-            {
-                bassNotes.Add(new Note(new System.Windows.Point(25, 0), new Ellipse(), time));
-                time += 1000;
-            }
-            
-            //offset when the notes are playable by half a second
-            time = 500;
-
-            //populates snareNotes with 100 notes, playable at 1 second intervals
-            for (int i = 0; i < 100; i++)
-            {
-                snareNotes.Add(new Note(new System.Windows.Point(235, 0), new Ellipse(), time));
-                time += 1000;
-            }
-
-            //reset time to base time
-            time = 0;
-
-            //populates cymbolNotes with 200 notes, playable at .5 second intervals
-            for (int i = 0; i < 200; i++)
-            {
-                cymbolNotes.Add(new Note(new System.Windows.Point(445, 0), new Ellipse(), time));
-                time += 500;
-            }*/
         }
 
         /// <summary>
@@ -75,11 +43,11 @@ namespace DrumSharp.Notes
         /// <para/>Author: Andrew Busto
         /// <para/>Date: March 20, 2017
         /// </summary>
-        public void saveToFile()
+        public void saveToFile(String name)
         {
             IFormatter formatter = new BinaryFormatter();
 
-            Stream stream = new FileStream("hello", FileMode.Create, FileAccess.Write, FileShare.None);
+            Stream stream = new FileStream(name, FileMode.Create, FileAccess.Write, FileShare.None);
             formatter.Serialize(stream, this);
             stream.Close();
         }
