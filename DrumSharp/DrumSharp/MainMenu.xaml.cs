@@ -42,5 +42,10 @@ namespace DrumSharp
         {
             Switcher.Switch(new Settings());
         }
+
+        private void makeBeat_Click(object sender, RoutedEventArgs e)
+        {
+            Switcher.Switch(new MakeBeat());
+        }
     }
 }

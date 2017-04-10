@@ -8,8 +8,8 @@
         Height="700"
         Width="525">
     <Grid>
-        <Button x:Name="play" Content="Play Game" Margin="144,180,146.143,0" VerticalAlignment="Top" Height="90" Click="Play_Button_Click" FontSize="20"/>
-        <Button x:Name="settings" Content="Settings" Margin="144,407,146.143,0" VerticalAlignment="Top" Height="90" Click="settings_Click" FontSize="20"/>
-
+        <Button x:Name="play" Content="Play Game" Margin="144,148,146,0" VerticalAlignment="Top" Height="90" Click="Play_Button_Click" FontSize="20"/>
+        <Button x:Name="settings" Content="Settings" Margin="144,243,146,0" VerticalAlignment="Top" Height="90" Click="settings_Click" FontSize="20"/>
+        <Button x:Name="makeBeat" Content="Compose" Margin="144,338,146,0" VerticalAlignment="Top" Height="90" Click="makeBeat_Click" FontSize="20"/>
     </Grid>
 </UserControl>

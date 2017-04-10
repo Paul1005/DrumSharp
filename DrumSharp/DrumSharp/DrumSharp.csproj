@@ -84,6 +84,9 @@
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MakeBeat.xaml.cs">
+      <DependentUpon>MakeBeat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Misc\Keybinds.cs" />
     <Compile Include="Misc\ISwitchable.cs" />
     <Compile Include="Misc\Pair.cs" />
@@ -107,6 +110,10 @@
     <Compile Include="Drums\HighHat.cs" />
     <Compile Include="Drums\Snare.cs" />
     <Page Include="MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MakeBeat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
