@@ -1,22 +1,14 @@
 ﻿using DrumSharp.Drums;
-using DrumSharp.Misc;
 using DrumSharp.Notes;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
@@ -45,10 +37,8 @@ namespace DrumSharp
         /// <para/>Purpose: Creates the window and loads the game
         /// <para/>Input: none
         /// <para/>Output: none
-        /// <para/>Author: Connor Goudie, Paul McCarlie
-        /// <para/>Date: March 9, 2017
-        /// <para/>Updated by: Connor Goudie, Paul McCarlie
-        /// <para/>Date: March 20, 2017
+        /// <para/>Author: Connor Goudie, Paul McCarlie, Andrew Busto
+        /// <para/>Date: April 09, 2017
         /// </summary>
         public MakeBeat()
         {
@@ -108,14 +98,13 @@ namespace DrumSharp
         }
 
         /// <summary>
-        /// <para/>Purpose: Iterates through the beat and moves notes held by it down the
-        /// screen if they are currently displayed.
+        /// <para/>Purpose: Sets curtime and refreshes the screen.
         /// <para/>Input: none
         /// <para/>Output: none
         /// <para/>Author: Connor Goudie
         /// <para/>Date: March 17, 2017
         /// <para/>Updated by: Andrew Busto
-        /// <para/>Date: March 30, 2017
+        /// <para/>Date: April 09, 2017
         /// </summary>
         private void update()
         {
@@ -133,7 +122,7 @@ namespace DrumSharp
         /// <para/>Author: Connor Goudie
         /// <para/>Date: March 15, 2017
         /// <para/>Updated by: Andrew Busto
-        /// <para/>Date: March 30, 2017
+        /// <para/>Date: April 09, 2017
         /// </summary>
         public void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -173,13 +162,11 @@ namespace DrumSharp
         }
 
         /// <summary>
-        /// <para/> Plays a specified Drum.  Increments/decrements score based on
-        ///         whether the drum was played correctly.  Removes the corrisponding
-        ///         ellipse from the screen if the drum was played correctly.
+        /// <para/> Plays a specified Drum.  Adds a corrisponding note to the Beat object.
         /// <para/>Input: none
         /// <para/>Output: none
         /// <para/>Author: Andrew Busto
-        /// <para/>Date: March 30, 2017
+        /// <para/>Date: April 09, 2017
         /// </summary>
         private void hitNote(List<Note> notes, Drum drum, int pos)
         {
@@ -202,10 +189,11 @@ namespace DrumSharp
 
         /// <summary>
         /// <para/> Returns the user to the main menue.
-        /// <para/>Input: none
+        /// <para/>Input:   sender  - the object which sent the command.  Unused.
+        ///                 e       - unused.
         /// <para/>Output: none
-        /// <para/>Author: Connor Goudie
-        /// <para/>Date: April 08, 2017
+        /// <para/>Author: Andrew Busto
+        /// <para/>Date: April 09, 2017
         /// </summary>
         private void menuButton_Click(object sender, RoutedEventArgs e)
         {
@@ -238,6 +226,13 @@ namespace DrumSharp
             }
         }
 
+        /// <summary>
+        /// <para/> Returns the user to the main menue.
+        /// <para/>Input: none
+        /// <para/>Output: none
+        /// <para/>Author: Andrew Busto
+        /// <para/>Date: April 09, 2017
+        /// </summary>
         private void returnToMenu()
         {
             //children removed so game doesn't crash on next startup

@@ -10,8 +10,6 @@ using System.Windows.Input;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Windows.Media;
-using System.IO;
-using Microsoft.Win32;
 
 namespace DrumSharp
 {
