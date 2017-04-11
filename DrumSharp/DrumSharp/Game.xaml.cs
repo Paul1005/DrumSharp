@@ -109,7 +109,7 @@ namespace DrumSharp
             //checks if a new note can be added and adds it to the gamescreen
             addNewNotes(beat.BassNotes);
             addNewNotes(beat.SnareNotes);
-            addNewNotes(beat.CymbolNotes);
+            addNewNotes(beat.HighHatNotes);
             //updates the game's GUI
             update();
         }
@@ -176,10 +176,10 @@ namespace DrumSharp
             //moves snare notes on the screen down
             moveNotes(beat.SnareNotes);
 
-            //moves cymbol notes on the screen down
-            moveNotes(beat.CymbolNotes);
+            //moves highhat notes on the screen down
+            moveNotes(beat.HighHatNotes);
 
-            if (beat.BassNotes.Count == 0 && beat.CymbolNotes.Count == 0 && beat.SnareNotes.Count == 0
+            if (beat.BassNotes.Count == 0 && beat.HighHatNotes.Count == 0 && beat.SnareNotes.Count == 0
                 && !(countDown < 0))
             {
                 countDown -= (curtime - prevtime);
@@ -245,7 +245,7 @@ namespace DrumSharp
                 }
                 else if (e.Key == Keybinds.keyList[2].First || e.Key == Keybinds.keyList[3].First)
                 {
-                    hitNote(beat.CymbolNotes, Keybinds.keyMap[e.Key]);
+                    hitNote(beat.HighHatNotes, Keybinds.keyMap[e.Key]);
                 }
                 else if (e.Key == Keybinds.keyList[4].First || e.Key == Keybinds.keyList[5].First)
                 {
@@ -366,7 +366,8 @@ namespace DrumSharp
                 timer.Stop();
                 watch.Stop();
                 pauseButton.Content = "Unpause";
-            } else if (isPaused)
+            }
+            else if (isPaused)
             {
                 prevtime = curtime;
                 curtime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;

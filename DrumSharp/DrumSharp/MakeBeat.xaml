@@ -21,6 +21,7 @@
                 Content="Main Menu"
                 HorizontalAlignment="Left"
                 Margin="10,10,0,0"
+                Focusable="False"
                 VerticalAlignment="Top"
                 Width="75" Click="menuButton_Click" Height="20"/>
         <Button x:Name="saveButton"
@@ -28,6 +29,7 @@
                 HorizontalAlignment="Left"
                 Margin="90,10,0,0"
                 VerticalAlignment="Top"
+                Focusable="False"
                 Width="94" Click="saveButton_Click" Height="20"/>
 
     </Grid>

@@ -17,7 +17,7 @@ namespace DrumSharp.Notes
         ///Notes that can be played
         private List<Note> bassNotes;
         private List<Note> snareNotes;
-        private List<Note> cymbolNotes;
+        private List<Note> highHatNotes;
 
         /// <summary>
         /// <para/>Purpose: Constructor for Beat
@@ -32,7 +32,7 @@ namespace DrumSharp.Notes
         {
             bassNotes = new List<Note>();
             snareNotes = new List<Note>();
-            cymbolNotes = new List<Note>();
+            highHatNotes = new List<Note>();
         }
 
         /// <summary>
@@ -87,11 +87,11 @@ namespace DrumSharp.Notes
         }
 
         /// <summary>
-        /// Getter for cymbolNotes
+        /// Getter for highHatNotes
         /// </summary>
-        public List<Note> CymbolNotes
+        public List<Note> HighHatNotes
         {
-            get { return cymbolNotes; }
+            get { return highHatNotes; }
         }
     }
 }

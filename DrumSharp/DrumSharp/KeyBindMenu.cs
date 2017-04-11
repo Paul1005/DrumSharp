@@ -23,7 +23,7 @@ namespace DrumSharp
                 temp = Keybinds.keyList[i].First.ToString();
                 if (temp.Equals("Space"))
                 {
-                    //boxes[i].Text += " ";
+                    boxes[i].Text += ' ';
                 }
                 else
                 {
@@ -32,7 +32,7 @@ namespace DrumSharp
             }
         }
 
-        private void textboxChanged(object sender, System.Windows.Forms.KeyEventArgs e)
+        private void textboxKeydown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
 

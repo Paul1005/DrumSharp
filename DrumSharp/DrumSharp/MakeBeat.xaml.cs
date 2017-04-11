@@ -135,7 +135,7 @@ namespace DrumSharp
                 }
                 else if (e.Key == Keybinds.keyList[2].First || e.Key == Keybinds.keyList[3].First)
                 {
-                    hitNote(beat.CymbolNotes, Keybinds.keyMap[e.Key], 445);
+                    hitNote(beat.HighHatNotes, Keybinds.keyMap[e.Key], 445);
                 }
                 else if (e.Key == Keybinds.keyList[4].First || e.Key == Keybinds.keyList[5].First)
                 {
