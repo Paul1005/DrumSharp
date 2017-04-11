@@ -33,8 +33,6 @@ namespace DrumSharp
 
         long curtime, prevtime;
 
-        private Button pauseButton;
-
         /// <summary>
         /// <para/>Purpose: Creates the window and loads the game
         /// <para/>Input: none
@@ -52,17 +50,6 @@ namespace DrumSharp
 
             //sets up pause logic; sets pause state to false and programmatically creates the pause button. 
             isPaused = false;
-            pauseButton = new Button();
-            pauseButton.Width = 50;
-            pauseButton.Height = 20;
-            pauseButton.Content = "Pause";
-            pauseButton.Click += new RoutedEventHandler(pauseButton_Click);
-            //makes it so space bar does not pause/unpause
-            pauseButton.Focusable = false;
-            //adds pause button to the canvas
-            canvas.Children.Add(pauseButton);
-            Canvas.SetTop(pauseButton, 10);
-            Canvas.SetLeft(pauseButton, 85);
 
             //Adds the 3 drum ellipses to the canvas.
             canvas.Children.Add(Keybinds.bass.ellipse);
@@ -285,38 +272,40 @@ namespace DrumSharp
         /// </summary>
         private void hitNote(List<Note> notes, Drum drum)
         {
-
-            //if note is within a playable range(within 25 units of the passing drum), and if so,
-            //remove it from the screen
-            if (notes.Count > 0 && notes[0].Position.Y > 585 && notes[0].Position.Y < 625)
+            if (!isPaused)
             {
-                //checks to see if player hit note withing 5 units of the passing note
-                if (notes[0].Position.Y > 600 && notes[0].Position.Y < 610)
+                //if note is within a playable range(within 25 units of the passing drum), and if so,
+                //remove it from the screen
+                if (notes.Count > 0 && notes[0].Position.Y > 585 && notes[0].Position.Y < 625)
                 {
-                    //color drum green
-                    drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                    //checks to see if player hit note withing 5 units of the passing note
+                    if (notes[0].Position.Y > 600 && notes[0].Position.Y < 610)
+                    {
+                        //color drum green
+                        drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
 
-                    //Give player 2 point
-                    player.Score += 2;
+                        //Give player 2 point
+                        player.Score += 2;
+                    }
+                    else
+                    {
+                        //colors drum yellow
+                        drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 0));
+                        //Give player a point
+                        player.Score++;
+                    }
+                    canvas.Children.Remove(ellipses[notes[0]]);
+                    ellipses.Remove(notes[0]);
+                    notes.Remove(notes[0]);
                 }
                 else
                 {
-                    //colors drum yellow
-                    drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 0));
-                    //Give player a point
-                    player.Score++;
-                }
-                canvas.Children.Remove(ellipses[notes[0]]);
-                ellipses.Remove(notes[0]);
-                notes.Remove(notes[0]);
-            }
-            else
-            {
-                //colors drum red
-                drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                    //colors drum red
+                    drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
 
-                //take point away
-                player.Score -= 2;
+                    //take 2 points away
+                    player.Score -= 2;
+                }
             }
         }
 
@@ -357,6 +346,7 @@ namespace DrumSharp
         /// </summary>
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
+            Button pauseButton = (Button)sender;
             if (!isPaused)
             {
                 timer.Stop();
