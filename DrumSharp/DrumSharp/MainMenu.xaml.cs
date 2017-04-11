@@ -21,11 +21,28 @@ namespace DrumSharp
             }
         }
 
+        /// <summary>
+        /// <para/>Purpose: Unused.
+        /// <para/>Input: state - unused.
+        /// <para/>Output: none
+        /// <para/>Author: Connor Goudie
+        /// <para/>Date: April 07, 2017
+        /// </summary>
         public void UtilizeState(object state)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// <para/>Purpose: Sets the screen to the game screen.
+        /// <para/>Input: sender - the button.  unused.
+        ///                 e - unused.
+        /// <para/>Output: none
+        /// <para/>Author: Connor Goudie
+        /// <para/>Date: April 07, 2017
+        /// <para/>Updated by: Andrew Busto
+        /// <para/>Updated on: April 09, 2017
+        /// </summary>
         private void Play_Button_Click(object sender, RoutedEventArgs e)
         {
             Beat beat;

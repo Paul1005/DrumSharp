@@ -32,6 +32,7 @@ namespace DrumSharp
         DispatcherTimer timer = new DispatcherTimer();
 
         long curtime, prevtime;
+        long countDown = 3000;
 
         /// <summary>
         /// <para/>Purpose: Creates the window and loads the game
@@ -177,6 +178,14 @@ namespace DrumSharp
 
             //moves cymbol notes on the screen down
             moveNotes(beat.CymbolNotes);
+
+            if (beat.BassNotes.Count == 0 && beat.CymbolNotes.Count == 0 && beat.SnareNotes.Count == 0
+                && !(countDown < 0))
+            {
+                countDown -= (curtime - prevtime);
+                if (countDown < 0)
+                    returnToMenu();
+            }
 
             //refreshes the screen
             canvas.UpdateLayout();
@@ -329,6 +338,11 @@ namespace DrumSharp
         /// <para/>Date: April 08, 2017
         /// </summary>
         private void menuButton_Click(object sender, RoutedEventArgs e)
+        {
+            returnToMenu();
+        }
+
+        private void returnToMenu()
         {
             //children removed so game doesn't crash on next startup
             canvas.Children.Remove(Keybinds.bass.ellipse);
