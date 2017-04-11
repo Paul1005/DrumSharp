@@ -66,3 +66,5 @@ C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\obj\Debug\MakeBeat.baml
 C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\obj\Debug\Settings.baml
 C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\obj\Debug\WindowSwitcher.baml
 C:\school\techPro\project\DrumSharp\DrumSharp\DrumSharp\obj\Debug\DrumSharp.KeyBindMenu.resources
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\MakeBeat.g.cs
+C:\Users\Connor\Documents\BCIT\Term_3\COMP3951_TechPro\DrumSharp\DrumSharp\DrumSharp\obj\Debug\MakeBeat.baml

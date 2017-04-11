@@ -20,7 +20,6 @@ namespace DrumSharp
     public partial class MakeBeat : UserControl
     {
 
-        private bool isPaused;
         //used for measuring elapsed time during the game loop.
         private Stopwatch watch;
 
@@ -32,7 +31,7 @@ namespace DrumSharp
         DispatcherTimer timer = new DispatcherTimer();
 
         long curtime, starttime;
-        
+
         /// <summary>
         /// <para/>Purpose: Creates the window and loads the game
         /// <para/>Input: none
@@ -212,7 +211,8 @@ namespace DrumSharp
 
             if ((bool)saveFileDialog.ShowDialog())
             {
-                try {
+                try
+                {
                     beat.saveToFile(saveFileDialog.FileName);
                 }
                 catch (IOException err)
