@@ -68,11 +68,31 @@ namespace DrumSharp
             }
         }
 
+        /// <summary>
+        /// <para/>Purpose: Sets the screen to the settings screen
+        /// <para/>Input: sender - the button.  unused.
+        ///                 e - unused.
+        /// <para/>Output: none
+        /// <para/>Author: Connor Goudie
+        /// <para/>Date: April 07, 2017
+        /// <para/>Updated by: Andrew Busto
+        /// <para/>Updated on: April 09, 2017
+        /// </summary>
         private void settings_Click(object sender, RoutedEventArgs e)
         {
             Switcher.Switch(new Settings());
         }
 
+        /// <summary>
+        /// <para/>Purpose: Sets the screen to the makeBeat screen
+        /// <para/>Input: sender - the button.  unused.
+        ///                 e - unused.
+        /// <para/>Output: none
+        /// <para/>Author: Connor Goudie
+        /// <para/>Date: April 07, 2017
+        /// <para/>Updated by: Andrew Busto
+        /// <para/>Updated on: April 09, 2017
+        /// </summary>
         private void makeBeat_Click(object sender, RoutedEventArgs e)
         {
             Switcher.Switch(new MakeBeat());

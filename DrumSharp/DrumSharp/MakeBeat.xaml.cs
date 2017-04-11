@@ -116,7 +116,8 @@ namespace DrumSharp
         /// <summary>
         /// <para/> When user presses a key during gameplay, this method checks which key is pressed
         ///         to see if it matches the mapped keys to any of the instruments, and plays them if so.
-        /// <para/>Input: none
+        /// <para/>Input: sender - the button.  unused.
+        ///                 e - unused.
         /// <para/>Output: none
         /// <para/>Author: Connor Goudie
         /// <para/>Date: March 15, 2017
@@ -147,7 +148,8 @@ namespace DrumSharp
 
         /// <summary>
         /// <para/> Resets the color of a the drum corresponding to the key being released to back to white.
-        /// <para/>Input: none
+        /// <para/>Input: sender - the button.  unused.
+        ///                 e - unused.
         /// <para/>Output: none
         /// <para/>Author: Paul McCarlie
         /// <para/>Date: April 08, 2017
@@ -162,7 +164,9 @@ namespace DrumSharp
 
         /// <summary>
         /// <para/> Plays a specified Drum.  Adds a corrisponding note to the Beat object.
-        /// <para/>Input: none
+        /// <para/>Input: notes - the notes associated with the drum.
+        ///                 drum - the drum being hit.
+        ///                 pos - the horizontal position of the note.
         /// <para/>Output: none
         /// <para/>Author: Andrew Busto
         /// <para/>Date: April 09, 2017
@@ -176,7 +180,7 @@ namespace DrumSharp
 
         /// <summary>
         /// <para/> Will switch the screen to whatever is passed in.
-        /// <para/>Input: none
+        /// <para/>Input: state - unused.
         /// <para/>Output: none
         /// <para/>Author: Connor Goudie
         /// <para/>Date: March 30, 2017
@@ -199,6 +203,14 @@ namespace DrumSharp
             returnToMenu();
         }
 
+        /// <summary>
+        /// <para/> saves the beat and returns the user to the main menu.
+        /// <para/>Input:   sender  - the object which sent the command.  Unused.
+        ///                 e       - unused.
+        /// <para/>Output: none
+        /// <para/>Author: Andrew Busto
+        /// <para/>Date: April 09, 2017
+        /// </summary>
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -230,7 +242,7 @@ namespace DrumSharp
         /// <para/> Returns the user to the main menue.
         /// <para/>Input: none
         /// <para/>Output: none
-        /// <para/>Author: Andrew Busto
+        /// <para/>Author: Andrew Busto/Connor Goudie
         /// <para/>Date: April 09, 2017
         /// </summary>
         private void returnToMenu()
