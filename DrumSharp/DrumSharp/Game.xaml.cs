@@ -235,21 +235,25 @@ namespace DrumSharp
         /// </summary>
         public void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (!e.IsRepeat && Keybinds.keyMap.ContainsKey(e.Key))
+            //does nothing if game is paused
+            if (!isPaused)
             {
-                Keybinds.keyMap[e.Key].playSound();
+                if (!e.IsRepeat && Keybinds.keyMap.ContainsKey(e.Key))
+                {
+                    Keybinds.keyMap[e.Key].playSound();
 
-                if (e.Key == Keybinds.keyList[0].First || e.Key == Keybinds.keyList[1].First)
-                {
-                    hitNote(beat.SnareNotes, Keybinds.keyMap[e.Key]);
-                }
-                else if (e.Key == Keybinds.keyList[2].First || e.Key == Keybinds.keyList[3].First)
-                {
-                    hitNote(beat.HighHatNotes, Keybinds.keyMap[e.Key]);
-                }
-                else if (e.Key == Keybinds.keyList[4].First || e.Key == Keybinds.keyList[5].First)
-                {
-                    hitNote(beat.BassNotes, Keybinds.keyMap[e.Key]);
+                    if (e.Key == Keybinds.keyList[0].First || e.Key == Keybinds.keyList[1].First)
+                    {
+                        hitNote(beat.SnareNotes, Keybinds.keyMap[e.Key]);
+                    }
+                    else if (e.Key == Keybinds.keyList[2].First || e.Key == Keybinds.keyList[3].First)
+                    {
+                        hitNote(beat.HighHatNotes, Keybinds.keyMap[e.Key]);
+                    }
+                    else if (e.Key == Keybinds.keyList[4].First || e.Key == Keybinds.keyList[5].First)
+                    {
+                        hitNote(beat.BassNotes, Keybinds.keyMap[e.Key]);
+                    }
                 }
             }
 
@@ -281,40 +285,37 @@ namespace DrumSharp
         /// </summary>
         private void hitNote(List<Note> notes, Drum drum)
         {
-            if (!isPaused)
+            //if note is within a playable range(within 25 units of the passing drum), and if so,
+            //remove it from the screen
+            if (notes.Count > 0 && notes[0].Position.Y > 585 && notes[0].Position.Y < 625)
             {
-                //if note is within a playable range(within 25 units of the passing drum), and if so,
-                //remove it from the screen
-                if (notes.Count > 0 && notes[0].Position.Y > 585 && notes[0].Position.Y < 625)
+                //checks to see if player hit note withing 5 units of the passing note
+                if (notes[0].Position.Y > 600 && notes[0].Position.Y < 610)
                 {
-                    //checks to see if player hit note withing 5 units of the passing note
-                    if (notes[0].Position.Y > 600 && notes[0].Position.Y < 610)
-                    {
-                        //color drum green
-                        drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                    //color drum green
+                    drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
 
-                        //Give player 2 point
-                        player.Score += 2;
-                    }
-                    else
-                    {
-                        //colors drum yellow
-                        drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 0));
-                        //Give player a point
-                        player.Score++;
-                    }
-                    canvas.Children.Remove(ellipses[notes[0]]);
-                    ellipses.Remove(notes[0]);
-                    notes.Remove(notes[0]);
+                    //Give player 2 point
+                    player.Score += 2;
                 }
                 else
                 {
-                    //colors drum red
-                    drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-
-                    //take 2 points away
-                    player.Score -= 2;
+                    //colors drum yellow
+                    drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 255, 0));
+                    //Give player a point
+                    player.Score++;
                 }
+                canvas.Children.Remove(ellipses[notes[0]]);
+                ellipses.Remove(notes[0]);
+                notes.Remove(notes[0]);
+            }
+            else
+            {
+                //colors drum red
+                drum.ellipse.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+
+                //take 2 points away
+                player.Score -= 2;
             }
         }
 
