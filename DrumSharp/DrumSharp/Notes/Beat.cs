@@ -37,7 +37,7 @@ namespace DrumSharp.Notes
 
         /// <summary>
         /// <para/>Purpose: Saves the Beat to a file
-        /// <para/>Input: none
+        /// <para/>Input: String name - name fo the file to be saved
         /// <para/>Output: none
         /// <para/>Author: Andrew Busto
         /// <para/>Date: March 20, 2017
@@ -53,7 +53,7 @@ namespace DrumSharp.Notes
 
         /// <summary>
         /// <para/>Purpose: Loads a beat from a file.
-        /// <para/>Input: none
+        /// <para/>Input: String filename- name of the file to be loaded
         /// <para/>Output: The Beat loaded.
         /// <para/>Author: Andrew Busto
         /// <para/>Date: April 04, 2017

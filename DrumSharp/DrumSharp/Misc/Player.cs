@@ -28,18 +28,6 @@ namespace DrumSharp.Misc
                 OnPropertyChanged();
             }
         }
-        /// <summary>
-        /// Dont think we need this.
-        /// </summary>
-        /// <returns></returns>
-        public static Player GetPlayer()
-        {
-            var player = new Player()
-            {
-                Score = 0
-            };
-            return player;
-        }
 
         /// <summary>
         /// Does stuff.

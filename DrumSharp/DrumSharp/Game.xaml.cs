@@ -18,6 +18,7 @@ namespace DrumSharp
     /// </summary>
     public partial class Game : UserControl, ISwitchable
     {
+        //indicates whether the game is paused or not
         private bool isPaused;
         //Player for game
         private Player player;
@@ -117,7 +118,7 @@ namespace DrumSharp
         /// /// <summary>
         /// <para/>Iterates through the beat to see if any notes held can be added to 
         /// the game.
-        /// <para/>Input: none
+        /// <para/>Input: List<Note>notes - the notes to be moved/removed.
         /// <para/>Output: none
         /// <para/>Author: Connor Goudie
         /// <para/>Date: March 17, 2017
@@ -194,7 +195,7 @@ namespace DrumSharp
         /// <summary>
         /// <para/>Purpose: Iterates through the notes and moves them down
         /// if they are currently displayed.
-        /// <para/>Input: notes - the notes to be moved/removed.
+        /// <para/>Input: List<Note>notes - the notes to be moved/removed.
         /// <para/>Output: none
         /// <para/>Author: Andrew Busto
         /// <para/>Date: March 30, 2017
@@ -226,7 +227,9 @@ namespace DrumSharp
         /// <summary>
         /// <para/> When user presses a key during gameplay, this method checks which key is pressed
         ///         to see if it matches the mapped keys to any of the instruments, and plays them if so.
-        /// <para/>Input: none
+        /// <para/>Input: 
+        ///     object sender: object calling this method
+        ///     EventArgs e: event arguments recieved from caller
         /// <para/>Output: none
         /// <para/>Author: Connor Goudie
         /// <para/>Date: March 15, 2017
@@ -261,7 +264,9 @@ namespace DrumSharp
 
         /// <summary>
         /// <para/> Resets the color of a the drum corresponding to the key being released to back to white.
-        /// <para/>Input: none
+        /// <para/>Input: 
+        ///     object sender: object calling this method
+        ///     KeyEventArgs e: key event arguments recieved from caller
         /// <para/>Output: none
         /// <para/>Author: Paul McCarlie
         /// <para/>Date: April 08, 2017
@@ -278,7 +283,9 @@ namespace DrumSharp
         /// <para/> Plays a specified Drum.  Increments/decrements score based on
         ///         whether the drum was played correctly.  Removes the corrisponding
         ///         ellipse from the screen if the drum was played correctly.
-        /// <para/>Input: none
+        /// <para/>Input: 
+        ///     List<Note>notes - the notes to be moved/removed.
+        ///     Drum drum - the drum which is being hit
         /// <para/>Output: none
         /// <para/>Author: Connor Goudie/Andrew Busto
         /// <para/>Date: March 30, 2017
@@ -321,7 +328,7 @@ namespace DrumSharp
 
         /// <summary>
         /// <para/> Will switch the screen to whatever is passed in.
-        /// <para/>Input: none
+        /// <para/>Input: object state - the screen to switch too.
         /// <para/>Output: none
         /// <para/>Author: Connor Goudie
         /// <para/>Date: March 30, 2017
@@ -332,8 +339,10 @@ namespace DrumSharp
         }
 
         /// <summary>
-        /// <para/> Returns the player to the main menue.
+        /// <para/> Calls the method to return the player to the main menue.
         /// <para/>Input: none
+        ///     object sender: object calling this method
+        ///     RoutedEventArgs e: routed event arguments recieved from caller
         /// <para/>Output: none
         /// <para/>Author: Connor Goudie
         /// <para/>Date: April 08, 2017
@@ -343,6 +352,15 @@ namespace DrumSharp
             returnToMenu();
         }
 
+        /// <summary>
+        /// <para/> Removes the canvas elements before returning to main menu.
+        /// <para/>Input: none
+        ///     object sender: object calling this method
+        ///     RoutedEventArgs e: routed event arguments recieved from caller
+        /// <para/>Output: none
+        /// <para/>Author: Connor Goudie
+        /// <para/>Date: April 08, 2017
+        /// </summary>
         private void returnToMenu()
         {
             //children removed so game doesn't crash on next startup
@@ -362,12 +380,14 @@ namespace DrumSharp
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
             Button pauseButton = (Button)sender;
+            //pause the game
             if (!isPaused)
             {
                 timer.Stop();
                 watch.Stop();
                 pauseButton.Content = "Unpause";
             }
+            //unpause the game
             else if (isPaused)
             {
                 prevtime = curtime;
@@ -377,9 +397,10 @@ namespace DrumSharp
                 pauseButton.Content = "Pause";
             }
             isPaused = !isPaused;
-        }
-
+        } 
+        /// <summary>
+        /// getter and setter for keyMap
+        /// </summary>
         public static Dictionary<Key, Drum> KeyMap { get; set; }
-
     }
 }
