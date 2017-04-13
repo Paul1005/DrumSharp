@@ -17,11 +17,26 @@ namespace DrumSharp
             Switcher.Switch(new MainMenu());
         }
 
+        /// <summary>
+        /// <para/> saves the beat and returns the user to the main menu.
+        /// <para/>Input:UserControl nextPage - the page being naviagted to
+        /// <para/>Output: none
+        /// <para/>Author: Andrew Busto
+        /// <para/>Date: April 09, 2017
+        /// </summary>
         public void Navigate(UserControl nextPage)
         {
             this.Content = nextPage;
         }
 
+        /// <summary>
+        /// <para/> saves the beat and returns the user to the main menu.
+        /// <para/>Input:UserControl nextPage - the page being naviagted to
+        ///              object state - the state the next page uses
+        /// <para/>Output: none
+        /// <para/>Author: Andrew Busto
+        /// <para/>Date: April 09, 2017
+        /// </summary>
         public void Navigate(UserControl nextPage, object state)
         {
             this.Content = nextPage;

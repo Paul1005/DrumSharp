@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace DrumSharp.Misc
 {
+    /// <summary>
+    /// Pair class used to store 2 items
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="U"></typeparam>
     public class Pair<T, U>
     {
         public Pair()
