@@ -67,7 +67,6 @@ namespace DrumSharp
             {
                 menu.Close();
                 menu = null;
-                Console.WriteLine("AYY YO WUDDUP");
             }
         }
     }

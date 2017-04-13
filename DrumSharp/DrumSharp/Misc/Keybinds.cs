@@ -2,18 +2,23 @@
 using DrumSharp.Misc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace DrumSharp
 {
+    /// <summary>
+    /// Keybinds is the class that holds all of the current user keybind
+    /// controls. It also contains the drum that is played when the
+    /// specified key is pressed.
+    /// </summary>
     public static class Keybinds
     {
+        //keyList is used to determine which note is being played
         public static List<Pair<Key, Drum>> keyList;
+        //keyMap is used to play the drum associated with the pressed key's sound
         public static Dictionary<Key, Drum> keyMap;
 
+        //drum objects used to play sounds
         public static Snare snare;
         public static Bass bass;
         public static HighHat highHat;
@@ -52,9 +57,6 @@ namespace DrumSharp
             keyList.Add(new Pair<Key, Drum>(Key.Space, bass));
             keyMap.Add(Key.C, bass);
             keyMap.Add(Key.Space, bass);
-
-
         }
-
     }
 }
